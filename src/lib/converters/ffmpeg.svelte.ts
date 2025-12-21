@@ -93,10 +93,12 @@ export class FFmpegConverter extends Converter {
 					wasmURL: `${baseURL}/ffmpeg-core.wasm`,
 				});
 
+				this.clearTimeout();
 				this.status = "ready";
 			})();
 		} catch (err) {
 			error(["converters", this.name], `Error loading ffmpeg: ${err}`);
+			this.clearTimeout();
 			this.status = "error";
 			ToastManager.add({
 				type: "error",

@@ -7,9 +7,13 @@
 		files,
 		goingLeft,
 		setTheme,
+		updateLocale,
+		availableLocales,
+		locale,
 	} from "$lib/store/index.svelte";
 	import clsx from "clsx";
 	import {
+		Globe,
 		InfoIcon,
 		MoonIcon,
 		RefreshCw,
@@ -24,6 +28,9 @@
 	import { beforeNavigate } from "$app/navigation";
 	import Tooltip from "$lib/components/visual/Tooltip.svelte";
 	import { m } from "$lib/paraglide/messages";
+	import { getLocale } from "$lib/paraglide/runtime";
+	import Dropdown from "$lib/components/functional/Dropdown.svelte";
+	import { onMount } from "svelte";
 
 	const items = $derived<
 		{
@@ -98,6 +105,45 @@
 			goingLeft.set(false);
 		}
 	});
+
+	// Language switch logic
+	let currentLocale = $state("en");
+
+	const getLanguageDisplayName = (locale: string) => {
+		try {
+			return availableLocales[locale as keyof typeof availableLocales];
+		} catch {
+			return locale.toUpperCase();
+		}
+	};
+
+	const languageOptions = Object.keys(availableLocales).map((locale) =>
+		getLanguageDisplayName(locale),
+	);
+
+	function handleLanguageChange(selectedLanguage: string) {
+		const selectedLocale = Object.keys(availableLocales).find(
+			(locale) => getLanguageDisplayName(locale) === selectedLanguage,
+		);
+
+		if (selectedLocale && selectedLocale !== currentLocale) {
+			currentLocale = selectedLocale;
+			updateLocale(selectedLocale);
+		}
+	}
+
+	onMount(() => {
+		currentLocale = localStorage.getItem("locale") || getLocale();
+		
+		// Subscribe to locale changes to keep the dropdown in sync
+		const unsubscribe = locale.subscribe((newLocale) => {
+			if (newLocale && newLocale !== currentLocale) {
+				currentLocale = newLocale;
+			}
+		});
+		
+		return unsubscribe;
+	});
 </script>
 
 {#snippet link(item: (typeof items)[0], index: number)}
@@ -107,7 +153,7 @@
 		href={item.url}
 		aria-label={item.name}
 		class={clsx(
-			"min-w-16 md:min-w-32 h-full relative z-10 rounded-xl flex flex-1 items-center justify-center gap-3 overflow-hidden",
+			"min-w-24 md:min-w-40 h-full relative z-10 rounded-xl flex flex-1 items-center justify-center gap-3 overflow-hidden",
 			{
 				"bg-panel-highlight":
 					item.activeMatch(page.url.pathname) && !browser,
@@ -168,8 +214,101 @@
 	</a>
 {/snippet}
 
+<style>
+	:global(.language-selector-small > div) {
+		font-size: 1rem !important; /* 与菜单项一致 */
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		overflow: visible !important;
+		position: relative !important;
+		z-index: 1000 !important;
+	}
+
+	:global(.language-selector-small button) {
+		font-size: 1rem !important; /* 与菜单项一致 */
+		height: 56px !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		text-align: center !important;
+		border-radius: 5px !important;
+		gap: 0.5rem !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		padding-left: 0.5rem !important;
+		padding-right: 0.5rem !important;
+		overflow: hidden !important;
+		background-color: transparent !important;
+	}
+	
+	/* 按钮悬停状态 */
+	:global(.language-selector-small button:hover) {
+		background-color: var(--bg-panel-highlight) !important;
+	}
+	
+	:global(.language-selector-small button > div) {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		text-align: center !important;
+		flex: 0 1 auto !important;
+		min-width: 0 !important;
+		max-width: 100% !important;
+		overflow: hidden !important;
+		align-self: center !important;
+		margin: 0 !important;
+	}
+	
+	:global(.language-selector-small button > div.grid) {
+		display: grid !important;
+		align-items: center !important;
+		justify-items: center !important;
+		align-self: center !important;
+		margin: 0 !important;
+		height: auto !important;
+	}
+	
+	:global(.language-selector-small button > div.grid > p) {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		height: 100% !important;
+		margin: 0 !important;
+	}
+	
+	:global(.language-selector-small button p) {
+		text-align: center !important;
+		width: auto !important;
+		display: block !important;
+		margin: 0 !important;
+		white-space: nowrap !important;
+		overflow: hidden !important;
+		text-overflow: ellipsis !important;
+		font-size: 1rem !important; /* 与菜单项一致 */
+		font-weight: 500 !important; /* font-medium */
+	}
+	
+	:global(.language-selector-small button) {
+		position: relative !important;
+		z-index: 1 !important;
+	}
+	
+	/* 下拉菜单样式 - 确保在按钮下方显示 */
+	:global(.language-selector-small > div > div[class*="absolute"]) {
+		z-index: 1001 !important;
+		position: absolute !important;
+		top: 100% !important;
+		left: 0 !important;
+		margin-top: 0.25rem !important;
+		width: 100% !important;
+		min-width: max-content !important;
+	}
+</style>
+
 <div bind:this={container}>
-	<Panel class="max-w-[778px] w-screen h-20 flex items-center gap-3 relative">
+	<Panel class="max-w-[1200px] w-screen h-20 flex items-center gap-3 relative">
 		{@const linkRect = linkRects.at(selectedIndex) || linkRects[0]}
 		{#if linkRect && isInitialized}
 			<div
@@ -194,7 +333,17 @@
 		{#each items as item, i (item.url)}
 			{@render link(item, i)}
 		{/each}
-		<div class="w-0.5 bg-separator h-full hidden md:flex"></div>
+		<div class="w-0.5 bg-separator h-full"></div>
+		<div class="flex items-center gap-2 px-2 h-full">
+			<Globe class="w-4 h-4 flex-shrink-0" />
+			<div class="min-w-[80px] md:min-w-[100px] w-[100px] md:w-[120px] max-w-[120px] h-full flex items-center language-selector-small" style="overflow: visible;">
+				<Dropdown
+					options={languageOptions}
+					selected={getLanguageDisplayName(currentLocale)}
+					onselect={handleLanguageChange}
+				/>
+			</div>
+		</div>
 		<Tooltip text={m["navbar.toggle_theme"]()} position="right">
 			<button
 				onclick={() => {
@@ -202,7 +351,7 @@
 						document.documentElement.classList.contains("dark");
 					setTheme(isDark ? "light" : "dark");
 				}}
-				class="w-14 h-full items-center justify-center hidden md:flex"
+				class="w-14 h-full items-center justify-center flex"
 			>
 				<SunIcon class="dynadark:hidden block" />
 				<MoonIcon class="dynadark:block hidden" />

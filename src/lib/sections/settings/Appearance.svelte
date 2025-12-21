@@ -69,7 +69,16 @@
 		effectsUnsubscribe = effects.subscribe(updateEffectsClasses);
 		themeUnsubscribe = theme.subscribe(updateThemeClasses);
 
-		currentLocale = localStorage.getItem("locale") || getLocale();
+		const storedLocale = localStorage.getItem("locale");
+		if (storedLocale && Object.keys(availableLocales).includes(storedLocale)) {
+			currentLocale = storedLocale;
+		} else {
+			try {
+				currentLocale = getLocale();
+			} catch {
+				currentLocale = "en";
+			}
+		}
 	});
 
 	onDestroy(() => {

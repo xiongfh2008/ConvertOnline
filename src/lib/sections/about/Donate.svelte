@@ -93,12 +93,12 @@
 		if (!isOfficial) {
 			log(
 				["about", "donate"],
-				"donations are being sent to an unofficial VERT instance - PUB_DONATION_URL and/or PUB_STRIPE_KEY have been changed.",
+				"donations are being sent to an unofficial Toolkitlife instance - PUB_DONATION_URL and/or PUB_STRIPE_KEY have been changed.",
 			);
 		} else {
 			log(
 				["about", "donate"],
-				"donations are being sent to the official VERT instance.",
+				"donations are being sent to the official Toolkitlife instance.",
 			);
 		}
 	});

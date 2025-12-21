@@ -112,14 +112,14 @@
 
 <svelte:head>
 	<title>{VERT_NAME}</title>
-	<meta name="theme-color" content="#F2ABEE" />
+	<meta name="theme-color" content="#7C3AED" />
 	<meta
 		name="title"
 		content="{VERT_NAME} — Free, fast, and awesome file converter"
 	/>
 	<meta
 		name="description"
-		content="With VERT, you can quickly convert any image, video, audio, and document file. No ads, no tracking, open source, and all processing (other than video) is done on your device."
+		content="With Toolkitlife, you can quickly convert any image, video, audio, and document file. No ads, no tracking, open source, and all processing (other than video) is done on your device."
 	/>
 	<meta property="og:url" content="https://vert.sh" />
 	<meta property="og:type" content="website" />
@@ -129,7 +129,7 @@
 	/>
 	<meta
 		property="og:description"
-		content="With VERT, you can quickly convert any image, video, audio, and document file. No ads, no tracking, open source, and all processing (other than video) is done on your device."
+		content="With Toolkitlife, you can quickly convert any image, video, audio, and document file. No ads, no tracking, open source, and all processing (other than video) is done on your device."
 	/>
 	<meta property="og:image" content={featuredImage} />
 	<meta name="twitter:card" content="summary_large_image" />
@@ -141,7 +141,7 @@
 	/>
 	<meta
 		property="twitter:description"
-		content="With VERT, you can quickly convert any image, video, audio, and document file. No ads, no tracking, open source, and all processing (other than video) is done on your device."
+		content="With Toolkitlife, you can quickly convert any image, video, audio, and document file. No ads, no tracking, open source, and all processing (other than video) is done on your device."
 	/>
 	<meta property="twitter:image" content={featuredImage} />
 	<link rel="manifest" href="/manifest.json" />

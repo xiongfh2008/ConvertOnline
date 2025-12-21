@@ -1,11 +1,11 @@
 {
-	"name": "VERT",
-	"short_name": "VERT",
+	"name": "Toolkitlife",
+	"short_name": "Toolkitlife",
 	"description": "The file converter you'll love",
 	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#ffffff",
-	"theme_color": "#F2ABEE",
+	"theme_color": "#7C3AED",
 	"icons": [
 		{
 			"src": "lettermark.jpg",

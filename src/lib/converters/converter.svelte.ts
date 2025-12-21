@@ -40,7 +40,7 @@ export class Converter {
 
 	private timeoutId?: NodeJS.Timeout;
 
-	constructor(public readonly timeout: number = 10) {
+	constructor(public readonly timeout: number = 30) {
 		this.startTimeout();
 	}
 

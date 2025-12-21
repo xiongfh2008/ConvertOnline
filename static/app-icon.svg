@@ -1,0 +1,65 @@
+<svg
+	width="512"
+	height="512"
+	viewBox="0 0 512 512"
+	fill="none"
+	xmlns="http://www.w3.org/2000/svg"
+>
+	<!-- Modern Toolkitlife App Icon -->
+	<defs>
+		<linearGradient id="appIconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+			<stop offset="0%" stop-color="#8A2BE2" />
+			<stop offset="100%" stop-color="#4B0082" />
+		</linearGradient>
+		<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="4" />
+			<feOffset dx="0" dy="4" result="offsetblur" />
+			<feFlood flood-color="#000000" flood-opacity="0.3" />
+			<feComposite in2="offsetblur" operator="in" />
+			<feMerge>
+				<feMergeNode />
+				<feMergeNode in="SourceGraphic" />
+			</feMerge>
+		</filter>
+	</defs>
+	
+	<!-- Background rounded square with gradient -->
+	<rect x="0" y="0" width="512" height="512" rx="100" fill="url(#appIconGradient)" filter="url(#shadow)" />
+	
+	<!-- Central icon group -->
+	<g transform="translate(100, 120) scale(2)">
+		<!-- Source file -->
+		<rect x="8" y="14" width="20" height="28" rx="4" fill="white" />
+		<rect x="12" y="20" width="12" height="2" rx="1" fill="url(#appIconGradient)" opacity="0.9"/>
+		<rect x="12" y="26" width="10" height="2" rx="1" fill="url(#appIconGradient)" opacity="0.9"/>
+		<rect x="12" y="32" width="8" height="2" rx="1" fill="url(#appIconGradient)" opacity="0.9"/>
+		
+		<!-- Conversion arrow -->
+		<path d="M32 28 L44 28 M40 24 L44 28 L40 32" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+		
+		<!-- Target file (rotated) -->
+		<rect x="48" y="18" width="20" height="24" rx="4" fill="white" opacity="0.9" transform="rotate(-10 58 30)"/>
+		<circle cx="52" cy="26" r="2" fill="url(#appIconGradient)" opacity="0.8" transform="rotate(-10 52 26)"/>
+		<circle cx="60" cy="28" r="2" fill="url(#appIconGradient)" opacity="0.8" transform="rotate(-10 60 28)"/>
+		<circle cx="52" cy="34" r="2" fill="url(#appIconGradient)" opacity="0.8" transform="rotate(-10 52 34)"/>
+	</g>
+	
+	<!-- "Toolkitlife" text below icon -->
+	<g fill="white" transform="translate(100, 320) scale(2.2)">
+		<!-- V -->
+		<path d="M8 0 L8 26 L13 26 L17 10 L21 26 L26 26 L26 0 L21 0 L17 14 L13 0 L8 0 Z"/>
+		<!-- E -->
+		<rect x="35" y="0" width="3" height="26" rx="1.5"/>
+		<rect x="35" y="0" width="14" height="3" rx="1.5"/>
+		<rect x="35" y="10" width="11" height="3" rx="1.5"/>
+		<rect x="35" y="23" width="14" height="3" rx="1.5"/>
+		<!-- R -->
+		<rect x="55" y="0" width="3" height="26" rx="1.5"/>
+		<rect x="55" y="0" width="11" height="3" rx="1.5"/>
+		<rect x="63" y="3" width="3" height="10" rx="1.5"/>
+		<path d="M55 13 L67 13 L63 17 L58 21 L55 25" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+		<!-- T -->
+		<rect x="75" y="0" width="14" height="3" rx="1.5"/>
+		<rect x="80" y="0" width="3" height="26" rx="1.5"/>
+	</g>
+</svg>

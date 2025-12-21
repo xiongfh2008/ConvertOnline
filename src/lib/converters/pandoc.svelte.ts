@@ -23,8 +23,10 @@ export class PandocConverter extends Converter {
 					r.arrayBuffer(),
 				);
 
+				this.clearTimeout();
 				this.status = "ready";
 			} catch (err) {
+				this.clearTimeout();
 				this.status = "error";
 				error(
 					["converters", this.name],
@@ -86,7 +88,7 @@ export class PandocConverter extends Converter {
 				case "PandocParseError": {
 					if (error.includes("JSON missing pandoc-api-version")) {
 						throw new Error(
-							`This JSON file is not a pandoc-converted JSON file. It must be converted with pandoc / VERT to be converted again.`,
+							`This JSON file is not a pandoc-converted JSON file. It must be converted with pandoc / Toolkitlife to be converted again.`,
 						);
 					}
 				}

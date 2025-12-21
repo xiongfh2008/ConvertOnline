@@ -14,14 +14,28 @@
 	import { sanitize } from "$lib/store/index.svelte";
 	import { DISABLE_ALL_EXTERNAL_REQUESTS } from "$lib/util/consts";
 
-	const getSupportedFormats = (name: string) =>
-		converters
-			.find((c) => c.name === name)
-			?.supportedFormats.map(
+	const getSupportedFormats = (name: string) => {
+		const converter = converters.find((c) => c.name === name);
+		if (!converter) {
+			console.warn(`Converter "${name}" not found`);
+			return "none";
+		}
+		if (!converter.supportedFormats || converter.supportedFormats.length === 0) {
+			console.warn(`Converter "${name}" has no supported formats`);
+			return "none";
+		}
+		const formats = converter.supportedFormats
+			.map(
 				(f) =>
 					`${f.name}${f.fromSupported && f.toSupported ? "" : "*"}`,
 			)
-			.join(", ") || "none";
+			.join(", ");
+		const result = formats.trim() || "none";
+		if (result === "none") {
+			console.warn(`Converter "${name}" formats list is empty`);
+		}
+		return result;
+	};
 
 	const worker: {
 		[key: string]: {
@@ -187,7 +201,6 @@
 										autoHideDelay: 1500,
 									},
 								}}
-								defer
 							>
 								<div
 									class="flex flex-col gap-4 h-[12.25rem] relative"
@@ -246,34 +259,41 @@
 										<p
 											class="flex flex-wrap justify-center leading-tight px-2"
 										>
-											{#each s.formats.split(", ") as format, index}
-												{@const isPartial =
-													format.endsWith("*")}
-												{@const formatName = isPartial
-													? format.slice(0, -1)
-													: format}
-												<span
-													class="text-sm font-normal flex items-center relative"
-												>
-													{#if isPartial}
-														<Tooltip
-															text={getTooltip(
-																formatName,
-															)}
-														>
-															{formatName}<span
-																class="text-red-500"
-																>*</span
+											{#if s.formats && s.formats !== "none"}
+												{@const formatList = s.formats.split(", ").filter(f => f.trim())}
+												{#each formatList as format, index}
+													{@const isPartial =
+														format.endsWith("*")}
+													{@const formatName = isPartial
+														? format.slice(0, -1)
+														: format}
+													<span
+														class="text-sm font-normal flex items-center relative"
+													>
+														{#if isPartial}
+															<Tooltip
+																text={getTooltip(
+																	formatName,
+																)}
 															>
-														</Tooltip>
-													{:else}
-														{formatName}
-													{/if}
-													{#if index < s.formats.split(", ").length - 1}
-														<span>,&nbsp;</span>
-													{/if}
+																{formatName}<span
+																	class="text-red-500"
+																	>*</span
+																>
+															</Tooltip>
+														{:else}
+															{formatName}
+														{/if}
+														{#if index < formatList.length - 1}
+															<span>,&nbsp;</span>
+														{/if}
+													</span>
+												{/each}
+											{:else}
+												<span class="text-sm font-normal text-muted">
+													{s.formats || "none"}
 												</span>
-											{/each}
+											{/if}
 										</p>
 									</div>
 								</div>

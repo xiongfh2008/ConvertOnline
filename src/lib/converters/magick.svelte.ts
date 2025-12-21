@@ -97,8 +97,10 @@ export class MagickConverter extends Converter {
 			}
 
 			this.wasm = await response.arrayBuffer();
+			this.clearTimeout();
 			this.status = "ready";
 		} catch (err) {
+			this.clearTimeout();
 			this.status = "error";
 			error(
 				["converters", this.name],
