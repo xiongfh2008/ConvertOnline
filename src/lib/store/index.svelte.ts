@@ -10,7 +10,7 @@ import { getLocale, setLocale } from "$lib/paraglide/runtime";
 import { m } from "$lib/paraglide/messages";
 import sanitizeHtml from "sanitize-html";
 import { ToastManager } from "$lib/util/toast.svelte";
-import { GB } from "$lib/util/consts";
+import { GB, MAX_ARRAY_BUFFER_SIZE, getMaxArrayBufferSize } from "$lib/util/consts";
 
 class Files {
 	public files = $state<VertFile[]>([]);
@@ -383,7 +383,7 @@ class Files {
 		const url = URL.createObjectURL(blob);
 
 		const settings = JSON.parse(localStorage.getItem("settings") ?? "{}");
-		const filenameFormat = settings.filenameFormat || "VERT_%name%";
+		const filenameFormat = settings.filenameFormat || "Toolkitlife_%name%";
 
 		const format = (name: string) => {
 			const date = new Date().toISOString();
@@ -513,62 +513,4 @@ export function sanitize(
 	});
 }
 
-/**
- * Binary search for a max value without knowing the exact value, only that it
- * can be under or over It dose not test every number but instead looks for
- * 1,2,4,8,16,32,64,128,96,95 to figure out that you thought about #96 from
- * 0-infinity
- *
- * @example findFirstPositive(x => matchMedia(`(max-resolution: ${x}dpi)`).matches)
- * @author Jimmy Wärting
- * @see {@link https://stackoverflow.com/a/72124984/1008999}
- * @param {function} f The function to run the test on (should return truthy or falsy values)
- * @param {bigint} [b=1] Where to start looking from
- * @param {function} d privately used to calculate the next value to test
- * @returns {bigint} Integer
- */
-function findFirstPositive(
-	f: (x: bigint) => number,
-	b = 1n,
-	d = (e: bigint, g: bigint, c?: bigint): bigint =>
-		g < e
-			? -1n
-			: 0 < f((c = (e + g) >> 1n))
-				? c == e || 0 >= f(c - 1n)
-					? c
-					: d(e, c - 1n)
-				: d(c + 1n, g),
-): bigint {
-	for (; 0 >= f(b); b <<= 1n);
-	return d(b >> 1n, b) - 1n;
-}
-
-export const getMaxArrayBufferSize = (): number => {
-	if (typeof window === "undefined") return 2 * GB; // default for SSR
-
-	// check cache first
-	const cached = localStorage.getItem("maxArrayBufferSize");
-	if (cached) {
-		const parsed = Number(cached);
-		log(["converters"], `using cached max ArrayBuffer size: ${parsed} bytes`);
-		if (!isNaN(parsed) && parsed > 0) return parsed;
-	}
-
-	// detect max size using binary search
-	const maxSize = findFirstPositive((x) => {
-		try {
-			new ArrayBuffer(Number(x));
-			return 0; // false = can allocate
-		} catch {
-			return 1; // true = cannot allocate
-		}
-	});
-
-	const result = Number(maxSize);
-	localStorage.setItem("maxArrayBufferSize", result.toString());
-	log(["converters"], `detected max ArrayBuffer size: ${result} bytes`);
-
-	return result;
-};
-
-export const MAX_ARRAY_BUFFER_SIZE = getMaxArrayBufferSize();
+// MAX_ARRAY_BUFFER_SIZE and getMaxArrayBufferSize moved to $lib/util/consts.ts to avoid circular dependency

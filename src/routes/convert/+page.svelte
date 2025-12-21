@@ -30,7 +30,7 @@
 	} from "lucide-svelte";
 	import { m } from "$lib/paraglide/messages";
 	import { Settings } from "$lib/sections/settings/index.svelte";
-	import { MAX_ARRAY_BUFFER_SIZE } from "$lib/store/index.svelte";
+	import { MAX_ARRAY_BUFFER_SIZE } from "$lib/util/consts";
 	import { GB } from "$lib/util/consts";
 	import { log } from "$lib/util/logger";
 
@@ -102,6 +102,15 @@
 
 	const handleSelect = (option: string, file: VertFile) => {
 		file.result = null;
+	};
+
+	const handleConvert = async (file: VertFile) => {
+		try {
+			await file.convert();
+		} catch (err) {
+			// Error is already handled by file.convert() via toastErr
+			console.error("Conversion error:", err);
+		}
 	};
 
 	$effect(() => {
@@ -390,8 +399,8 @@
 												: isDocument
 													? 'bg-accent-green'
 													: 'bg-accent-blue'}"
-										disabled={!files.ready}
-										onclick={() => file.convert()}
+										disabled={!files.ready || file.processing}
+										onclick={() => handleConvert(file)}
 									>
 										<RotateCwIcon size="24" />
 									</button>

@@ -3,7 +3,7 @@ import type { Converter } from "$lib/converters/converter.svelte";
 import { m } from "$lib/paraglide/messages";
 import { ToastManager } from "$lib/util/toast.svelte";
 import type { Component } from "svelte";
-import { MAX_ARRAY_BUFFER_SIZE } from "$lib/store/index.svelte";
+import { MAX_ARRAY_BUFFER_SIZE } from "$lib/util/consts";
 
 export class VertFile {
 	public id: string = Math.random().toString(36).slice(2, 8);
@@ -275,7 +275,7 @@ export class VertFile {
 		if (!to.startsWith(".")) to = `.${to}`;
 
 		const settings = JSON.parse(localStorage.getItem("settings") ?? "{}");
-		const filenameFormat = settings.filenameFormat || "VERT_%name%";
+		const filenameFormat = settings.filenameFormat || "Toolkitlife_%name%";
 
 		const format = (name: string) => {
 			const date = new Date().toISOString();
