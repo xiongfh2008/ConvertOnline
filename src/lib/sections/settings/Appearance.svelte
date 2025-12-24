@@ -70,13 +70,21 @@
 		themeUnsubscribe = theme.subscribe(updateThemeClasses);
 
 		const storedLocale = localStorage.getItem("locale");
-		if (storedLocale && Object.keys(availableLocales).includes(storedLocale)) {
+		const supportedLocales = Object.keys(availableLocales);
+		
+		if (storedLocale && supportedLocales.includes(storedLocale)) {
 			currentLocale = storedLocale;
 		} else {
 			try {
-				currentLocale = getLocale();
+				const detectedLocale = getLocale();
+				// Validate that the detected locale is in the supported list
+				if (supportedLocales.includes(detectedLocale)) {
+					currentLocale = detectedLocale;
+				} else {
+					currentLocale = "en"; // Fallback to English if invalid
+				}
 			} catch {
-				currentLocale = "en";
+				currentLocale = "en"; // Fallback to English on error
 			}
 		}
 	});

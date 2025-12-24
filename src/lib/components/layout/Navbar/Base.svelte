@@ -129,7 +129,25 @@
 	}
 
 	onMount(() => {
-		currentLocale = localStorage.getItem("locale") || getLocale();
+		// Get locale from localStorage or paraglide, but ensure it's valid
+		const savedLocale = localStorage.getItem("locale");
+		const supportedLocales = Object.keys(availableLocales);
+		
+		if (savedLocale && supportedLocales.includes(savedLocale)) {
+			currentLocale = savedLocale;
+		} else {
+			// Try to get from paraglide, but validate it
+			try {
+				const detectedLocale = getLocale();
+				if (supportedLocales.includes(detectedLocale)) {
+					currentLocale = detectedLocale;
+				} else {
+					currentLocale = "en"; // Fallback to English
+				}
+			} catch {
+				currentLocale = "en"; // Fallback to English if getLocale() throws
+			}
+		}
 		
 		// Subscribe to locale changes to keep the dropdown in sync
 		const unsubscribe = locale.subscribe((newLocale) => {

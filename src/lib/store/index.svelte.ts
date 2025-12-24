@@ -437,7 +437,7 @@ export const dropdownStates = writable<Record<string, string>>({});
 export const isMobile = writable(false);
 export const effects = writable(true);
 export const theme = writable<"light" | "dark">("dark");
-export const locale = writable(getLocale());
+
 export const availableLocales = {
 	en: "English",
 	es: "Español",
@@ -454,6 +454,39 @@ export const availableLocales = {
 	"zh-Hant": "繁體中文",
 	"pt-BR": "Português (Brasil)",
 };
+
+// Safe locale getter that ensures the locale is in the supported list
+function getSafeLocale(): string {
+	const supportedLocales = Object.keys(availableLocales);
+	
+	// First, check localStorage for saved locale
+	if (browser) {
+		const savedLocale = localStorage.getItem("locale");
+		if (savedLocale && supportedLocales.includes(savedLocale)) {
+			return savedLocale;
+		}
+		// If saved locale is invalid (e.g., "ru"), remove it
+		if (savedLocale && !supportedLocales.includes(savedLocale)) {
+			localStorage.removeItem("locale");
+		}
+	}
+	
+	// Then try to get locale from paraglide runtime
+	try {
+		const detectedLocale = getLocale();
+		if (supportedLocales.includes(detectedLocale)) {
+			return detectedLocale;
+		}
+	} catch (e) {
+		// If getLocale() throws an error (e.g., invalid locale like "ru"), fall back to "en"
+		log(["locale"], `Invalid locale detected, falling back to "en"`);
+	}
+	
+	// Default to English if nothing else works
+	return "en";
+}
+
+export const locale = writable(getSafeLocale());
 
 export function updateLocale(newLocale: string) {
 	if (!Object.keys(availableLocales).includes(newLocale)) newLocale = "en";
