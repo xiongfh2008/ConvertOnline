@@ -1,11 +1,11 @@
-import { PUB_DISABLE_ALL_EXTERNAL_REQUESTS } from "$env/static/public";
 import { log } from "$lib/util/logger";
 
-// Get PUB_ENV with safe fallback for Vercel builds
-// Use dynamic env to handle cases where PUB_ENV might not be defined
-// This works at build time even if PUB_ENV is not set in Vercel
+// Get environment variables with safe fallback for Vercel builds
+// Use dynamic env to handle cases where env vars might not be defined
+// This works at build time even if env vars are not set in Vercel
 import { env as dynamicEnv } from "$env/dynamic/public";
 const PUB_ENV: string = dynamicEnv.PUB_ENV ?? "production";
+const PUB_DISABLE_ALL_EXTERNAL_REQUESTS: string = dynamicEnv.PUB_DISABLE_ALL_EXTERNAL_REQUESTS ?? "false";
 
 export const GITHUB_URL_VERT = "https://github.com/VERT-sh/VERT";
 export const GITHUB_URL_VERTD = "https://github.com/VERT-sh/vertd";
