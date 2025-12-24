@@ -7,19 +7,19 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://vert.sh/</loc>
+    <loc>https://convertonline.toolkitlife.com/</loc>
     <lastmod>2025-01-17T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.00</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vert.sh/" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://vert.sh/?lang=zh-Hans" />
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://vert.sh/?lang=zh-Hant" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vert.sh/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://convertonline.toolkitlife.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://convertonline.toolkitlife.com/?lang=zh-Hans" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://convertonline.toolkitlife.com/?lang=zh-Hant" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://convertonline.toolkitlife.com/" />
   </url>
 
   <!-- Convert Page -->
   <url>
-    <loc>https://vert.sh/convert/</loc>
+    <loc>https://convertonline.toolkitlife.com/convert/</loc>
     <lastmod>2025-01-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
@@ -27,7 +27,7 @@
 
   <!-- About Page -->
   <url>
-    <loc>https://vert.sh/about/</loc>
+    <loc>https://convertonline.toolkitlife.com/about/</loc>
     <lastmod>2025-01-17T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
@@ -35,7 +35,7 @@
 
   <!-- FAQ Page -->
   <url>
-    <loc>https://vert.sh/faq/</loc>
+    <loc>https://convertonline.toolkitlife.com/faq/</loc>
     <lastmod>2025-01-17T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -43,7 +43,7 @@
 
   <!-- Contact Page -->
   <url>
-    <loc>https://vert.sh/contact/</loc>
+    <loc>https://convertonline.toolkitlife.com/contact/</loc>
     <lastmod>2025-01-17T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -51,7 +51,7 @@
 
   <!-- Settings Page -->
   <url>
-    <loc>https://vert.sh/settings/</loc>
+    <loc>https://convertonline.toolkitlife.com/settings/</loc>
     <lastmod>2025-01-17T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
@@ -59,7 +59,7 @@
 
   <!-- Privacy Policy -->
   <url>
-    <loc>https://vert.sh/privacy/</loc>
+    <loc>https://convertonline.toolkitlife.com/privacy/</loc>
     <lastmod>2025-01-17T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
@@ -67,7 +67,7 @@
 
   <!-- Terms and Conditions -->
   <url>
-    <loc>https://vert.sh/terms/</loc>
+    <loc>https://convertonline.toolkitlife.com/terms/</loc>
     <lastmod>2025-01-17T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>

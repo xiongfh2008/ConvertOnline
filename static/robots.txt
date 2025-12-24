@@ -1,5 +1,5 @@
 # robots.txt for ConvertOnline
-# https://vert.sh/robots.txt
+# https://convertonline.toolkitlife.com/robots.txt
 
 # Allow all search engines
 User-agent: *
@@ -35,7 +35,7 @@ Disallow: /_app/
 # Disallow: /
 
 # Sitemap location
-Sitemap: https://vert.sh/sitemap.xml
+Sitemap: https://convertonline.toolkitlife.com/sitemap.xml
 
 # Crawl-delay (helps prevent server overload)
 Crawl-delay: 1
