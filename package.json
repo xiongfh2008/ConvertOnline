@@ -64,5 +64,8 @@
 	"trustedDependencies": [
 		"@parcel/watcher",
 		"@swc/core"
-	]
+	],
+	"overrides": {
+		"@stripe/stripe-js": "^8.5.2"
+	}
 }
