@@ -2,7 +2,8 @@
 	import { browser } from "$app/environment";
 	import { log } from "$lib/util/logger";
 	import * as Settings from "$lib/sections/settings/index.svelte";
-	import { PUB_PLAUSIBLE_URL } from "$env/static/public";
+	import { env as dynamicEnv } from "$env/dynamic/public";
+	const PUB_PLAUSIBLE_URL = dynamicEnv.PUB_PLAUSIBLE_URL ?? "";
 	import { SettingsIcon } from "lucide-svelte";
 	import { onMount } from "svelte";
 	import { m } from "$lib/paraglide/messages";

@@ -8,7 +8,9 @@
 	import avatarJovannMC from "$lib/assets/avatars/jovannmc.jpg";
 	import avatarRealmy from "$lib/assets/avatars/realmy.jpg";
 	import avatarAzurejelly from "$lib/assets/avatars/azurejelly.jpg";
-	import { PUB_DONATION_URL, PUB_STRIPE_KEY } from "$env/static/public";
+	import { env as dynamicEnv } from "$env/dynamic/public";
+	const PUB_DONATION_URL = dynamicEnv.PUB_DONATION_URL ?? "https://donations.vert.sh";
+	const PUB_STRIPE_KEY = dynamicEnv.PUB_STRIPE_KEY ?? "";
 	import { DISABLE_ALL_EXTERNAL_REQUESTS, GITHUB_API_URL, VERT_NAME } from "$lib/util/consts";
 	import { m } from "$lib/paraglide/messages";
 	import { ToastManager } from "$lib/util/toast.svelte";

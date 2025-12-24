@@ -2,7 +2,9 @@
 	import { onMount } from "svelte";
 	import { goto, beforeNavigate, afterNavigate } from "$app/navigation";
 
-	import { PUB_PLAUSIBLE_URL, PUB_HOSTNAME } from "$env/static/public";
+	import { env as dynamicEnv } from "$env/dynamic/public";
+	const PUB_PLAUSIBLE_URL = dynamicEnv.PUB_PLAUSIBLE_URL ?? "";
+	const PUB_HOSTNAME = dynamicEnv.PUB_HOSTNAME ?? "";
 	import { DISABLE_ALL_EXTERNAL_REQUESTS, VERT_NAME } from "$lib/util/consts.js";
 	import * as Layout from "$lib/components/layout";
 	import * as Navbar from "$lib/components/layout/Navbar";

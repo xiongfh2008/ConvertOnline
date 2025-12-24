@@ -9,7 +9,9 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { page } from "$app/state";
-	import { PUB_DONATION_URL, PUB_STRIPE_KEY } from "$env/static/public";
+	import { env as dynamicEnv } from "$env/dynamic/public";
+	const PUB_DONATION_URL = dynamicEnv.PUB_DONATION_URL ?? "https://donations.vert.sh";
+	const PUB_STRIPE_KEY = dynamicEnv.PUB_STRIPE_KEY ?? "";
 	const OFFICIAL_DONATION_URL = "https://donations.vert.sh";
 	const OFFICIAL_STRIPE_KEY =
 		"pk_live_51RDVmAGSxPVad6bQwzVNnbc28nlmzA30krLWk1fefCMpUPiSRPkavMMbGqa8A3lUaOCMlsUEVy2CWDYg0ip3aPpL00ZJlsMkf2";

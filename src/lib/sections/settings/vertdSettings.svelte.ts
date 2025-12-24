@@ -1,6 +1,8 @@
 import { ip, type IpInfo } from "$lib/util/ip";
 import { Settings } from "./index.svelte";
-import { PUB_VERTD_URL } from "$env/static/public";
+import { env as dynamicEnv } from "$env/dynamic/public";
+
+const PUB_VERTD_URL = dynamicEnv.PUB_VERTD_URL ?? "";
 
 const LOCATIONS = [
 	{

@@ -1,7 +1,9 @@
-import { PUB_VERTD_URL } from "$env/static/public";
 import type { ConversionBitrate } from "$lib/converters/ffmpeg.svelte";
 import type { ConversionSpeed } from "$lib/converters/vertd.svelte";
 import { VertdInstance } from "./vertdSettings.svelte";
+import { env as dynamicEnv } from "$env/dynamic/public";
+
+const PUB_VERTD_URL = dynamicEnv.PUB_VERTD_URL ?? "";
 
 export { default as Appearance } from "./Appearance.svelte";
 export { default as Conversion } from "./Conversion.svelte";
