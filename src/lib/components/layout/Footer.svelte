@@ -2,7 +2,7 @@
 	import { CONTACT_EMAIL } from "$lib/util/consts";
 	import { m } from "$lib/paraglide/messages";
 	import Logo from "$lib/components/visual/svg/Logo.svelte";
-	import { MailIcon, HelpCircleIcon, BookOpenIcon } from "lucide-svelte";
+	import { MailIcon, HelpCircleIcon } from "lucide-svelte";
 
 	const year = new Date().getFullYear();
 </script>
@@ -72,18 +72,11 @@
 					<MailIcon size="20" />
 				</a>
 				<a
-					href="/help/"
+					href="/faq/"
 					class="w-10 h-10 rounded-full border-2 border-separator flex items-center justify-center text-foreground hover:bg-panel-highlight transition-colors"
 					title={m["footer.help"]()}
 				>
 					<HelpCircleIcon size="20" />
-				</a>
-				<a
-					href="/docs/"
-					class="w-10 h-10 rounded-full border-2 border-separator flex items-center justify-center text-foreground hover:bg-panel-highlight transition-colors"
-					title={m["footer.documentation"]()}
-				>
-					<BookOpenIcon size="20" />
 				</a>
 			</div>
 		</div>
