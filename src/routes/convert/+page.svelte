@@ -30,8 +30,7 @@
 	} from "lucide-svelte";
 	import { m } from "$lib/paraglide/messages";
 	import { Settings } from "$lib/sections/settings/index.svelte";
-	import { MAX_ARRAY_BUFFER_SIZE } from "$lib/util/consts";
-	import { GB } from "$lib/util/consts";
+	import { MAX_ARRAY_BUFFER_SIZE, GB, VERT_NAME } from "$lib/util/consts";
 	import { log } from "$lib/util/logger";
 
 	let processedFileIds = $state(new Set<string>());
@@ -138,6 +137,25 @@
 		gradientColor.set(type);
 	});
 </script>
+
+<svelte:head>
+	<title>Convert Files — {VERT_NAME} | Online File Converter</title>
+	<meta
+		name="description"
+		content="Convert your files online with {VERT_NAME}. Support for 250+ formats including images (JPEG, PNG, WebP), audio (MP3, WAV, FLAC), documents (PDF, DOCX), and videos (MP4, AVI, MOV). Batch conversion, no file size limits, and local processing for privacy."
+	/>
+	<meta
+		name="keywords"
+		content="convert files online, file converter, convert images, convert audio, convert documents, convert videos, batch file conversion, online converter, file format converter, 在线转换文件, 文件转换"
+	/>
+	<meta property="og:title" content="Convert Files — {VERT_NAME} | Online File Converter" />
+	<meta
+		property="og:description"
+		content="Convert your files online with {VERT_NAME}. Support for 250+ formats including images, audio, documents, and videos. Batch conversion, no file size limits."
+	/>
+	<meta property="og:type" content="website" />
+	<link rel="canonical" href="https://vert.sh/convert/" />
+</svelte:head>
 
 {#snippet fileItem(file: VertFile, index: number)}
 	{@const currentConverter = file.findConverter()}
@@ -342,7 +360,9 @@
 								<img
 									class="object-cover w-full h-full"
 									src={file.blobUrl}
-									alt={file.name}
+									alt={`${m["convert.tooltips.image_file"]()}: ${file.name}`}
+									loading="lazy"
+									decoding="async"
 								/>
 							{:else}
 								<div
@@ -429,12 +449,12 @@
 {/snippet}
 
 <div class="flex flex-col justify-center items-center gap-8 -mt-4 px-4 md:p-0">
-	<div class="max-w-[778px] w-full">
+	<div class="w-full max-w-[1280px] mx-auto">
 		<ConversionPanel />
 	</div>
 
 	<div
-		class="w-full max-w-[778px] grid grid-cols-1 md:grid-cols-2 auto-rows-[240px] gap-4 md:p-0"
+		class="w-full max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 auto-rows-[240px] gap-4 md:p-0"
 	>
 		{#each files.files as file, i (file.id)}
 			{#if files.files.length >= 2 && i === 1}

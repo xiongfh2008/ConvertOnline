@@ -9,7 +9,7 @@
 	import avatarRealmy from "$lib/assets/avatars/realmy.jpg";
 	import avatarAzurejelly from "$lib/assets/avatars/azurejelly.jpg";
 	import { PUB_DONATION_URL, PUB_STRIPE_KEY } from "$env/static/public";
-	import { DISABLE_ALL_EXTERNAL_REQUESTS, GITHUB_API_URL } from "$lib/util/consts";
+	import { DISABLE_ALL_EXTERNAL_REQUESTS, GITHUB_API_URL, VERT_NAME } from "$lib/util/consts";
 	import { m } from "$lib/paraglide/messages";
 	import { ToastManager } from "$lib/util/toast.svelte";
 	// import { dev } from "$app/environment";
@@ -142,6 +142,25 @@
 		&& !DISABLE_ALL_EXTERNAL_REQUESTS;
 </script>
 
+<svelte:head>
+	<title>About — {VERT_NAME} | Free Open Source File Converter</title>
+	<meta
+		name="description"
+		content="Learn about {VERT_NAME}, a free, open-source file converter that processes files locally on your device using WebAssembly. No ads, no tracking, privacy-focused, and supports 250+ file formats. Convert images, audio, documents, and videos with no file size limits."
+	/>
+	<meta
+		name="keywords"
+		content="about file converter, open source file converter, free file converter, privacy-focused converter, WebAssembly converter, local file conversion, file converter information, 文件转换器介绍, 开源文件转换器"
+	/>
+	<meta property="og:title" content="About — {VERT_NAME} | Free Open Source File Converter" />
+	<meta
+		property="og:description"
+		content="Learn about {VERT_NAME}, a free, open-source file converter that processes files locally on your device using WebAssembly. No ads, no tracking, privacy-focused."
+	/>
+	<meta property="og:type" content="website" />
+	<link rel="canonical" href="https://vert.sh/about/" />
+</svelte:head>
+
 <div class="flex flex-col h-full items-center">
 	<h1 class="hidden md:block text-[40px] tracking-tight leading-[72px] mb-6">
 		<InfoIcon size="40" class="inline-block -mt-2 mr-2" />
@@ -151,19 +170,12 @@
 	<div
 		class="w-full max-w-[1280px] flex flex-col md:flex-row gap-4 p-4 md:px-4 md:py-0"
 	>
-		<!-- Why Toolkitlife? & Credits -->
+		<!-- Why ConvertOnline? -->
 		<div class="flex flex-col gap-4 flex-1">
 			{#if donationsEnabled}
 				<About.Donate />
 			{/if}
 			<About.Why />
-			<About.Sponsors />
-		</div>
-
-		<!-- Resources & Donate to Toolkitlife -->
-		<div class="flex flex-col gap-4 flex-1">
-			<About.Resources />
-			<About.Credits {mainContribs} {notableContribs} {ghContribs} />
 		</div>
 	</div>
 </div>

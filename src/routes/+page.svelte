@@ -79,14 +79,20 @@
 			},
 		};
 
-		if (!DISABLE_ALL_EXTERNAL_REQUESTS) {
-			output.Video = {
-				formats: getSupportedFormats("vertd"),
-				icon: Film,
-				title: m["upload.cards.video"](),
-				status: $vertdLoaded === true ? "ready" : "not-ready", // not using converter.status for this
-			};
-		}
+		// Always show video card, but mark as not-ready if external requests are disabled
+		const vertdConverter = converters.find((c) => c.name === "vertd");
+		const videoFormats = vertdConverter
+			? getSupportedFormats("vertd")
+			: ".mkv, .mp4, .webm, .avi, .wmv, .mov, .gif, .mts, .ts, .m2ts, .mpg, .mpeg, .flv, .f4v, .vob, .m4v, .3gp, .3g2, .mxf, .ogv, .rm*, .rmvb*, .h264, .divx, .swf, .amv, .asf, .nut";
+		
+		output.Video = {
+			formats: videoFormats,
+			icon: Film,
+			title: m["upload.cards.video"](),
+			status: !DISABLE_ALL_EXTERNAL_REQUESTS && $vertdLoaded === true
+				? "ready"
+				: "not-ready",
+		};
 
 		return output;
 	});

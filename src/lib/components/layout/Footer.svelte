@@ -1,62 +1,91 @@
 <script lang="ts">
-	import { GITHUB_URL_VERT, DISCORD_URL } from "$lib/util/consts";
+	import { CONTACT_EMAIL } from "$lib/util/consts";
 	import { m } from "$lib/paraglide/messages";
-
-	const commitHash =
-		__COMMIT_HASH__ && __COMMIT_HASH__ !== "unknown"
-			? __COMMIT_HASH__
-			: null;
+	import Logo from "$lib/components/visual/svg/Logo.svelte";
+	import { MailIcon, HelpCircleIcon, BookOpenIcon } from "lucide-svelte";
 
 	const year = new Date().getFullYear();
-
-	// we can't use svelte snippets or a derived object to render the footer as it causes a full-page reload
-	// ...for some reason. i have no idea, maybe it's to do with the {#key $locale} in +layout.svelte
 </script>
 
 <footer
-	class="hidden md:block w-full h-14 border-t border-separator fixed bottom-0 mt-12"
+	class="hidden md:block w-full border-t border-separator mt-12 bg-panel"
 >
 	<div
-		class="w-full h-full flex items-center justify-center text-muted gap-3 relative"
+		class="w-full max-w-[1280px] mx-auto px-6 md:px-8 py-8 flex flex-col md:flex-row gap-8 md:gap-12"
 	>
-		<p>{m["footer.copyright"]({ year })}</p>
-		<p>•</p>
-		<a
-			class="hover:underline font-normal"
-			href={GITHUB_URL_VERT}
-			target="_blank"
-		>
-			{m["footer.source_code"]()}
-		</a>
-		<p>•</p>
-		<a
-			class="hover:underline font-normal"
-			href={DISCORD_URL}
-			target="_blank"
-		>
-			{m["footer.discord_server"]()}
-		</a>
-		<p>•</p>
-		<a
-			class="hover:underline font-normal"
-			href="/privacy/"
-		>
-			{m["footer.privacy_policy"]()}
-		</a>
-		{#if commitHash}
-			<p>•</p>
-			<a
-				class="hover:underline font-normal"
-				href="{GITHUB_URL_VERT}/commit/{commitHash}"
-				target="_blank"
-			>
-				{commitHash}
-			</a>
-		{/if}
-	</div>
+		<!-- Product Information -->
+		<div class="flex flex-col gap-3 flex-1">
+			<div class="flex items-center gap-3">
+				<div class="w-10 h-10">
+					<Logo />
+				</div>
+				<span class="text-lg font-bold text-foreground">ConvertOnline</span>
+			</div>
+			<p class="text-sm text-muted">
+				{m["footer.copyright"]({ year })} {m["footer.all_rights_reserved"]()}
+			</p>
+			<p class="text-sm text-muted">
+				{m["footer.version"]()} 1.10.5
+			</p>
+		</div>
 
-	<div
-		class="absolute bottom-0 left-0 w-full h-24 -z-10 pointer-events-none"
-		style="background: linear-gradient(to bottom, transparent, var(--bg) 100%)"
-	></div>
+		<!-- Company Links -->
+		<div class="flex flex-col gap-3">
+			<h3 class="text-base font-bold text-foreground">
+				{m["footer.company"]()}
+			</h3>
+			<a href="/about/" class="text-sm text-muted hover:underline">
+				{m["footer.about_us"]()}
+			</a>
+			<a href="/faq/" class="text-sm text-muted hover:underline">
+				{m["footer.faq"]()}
+			</a>
+			<a href="/contact/" class="text-sm text-muted hover:underline">
+				{m["footer.contact_us"]()}
+			</a>
+		</div>
+
+		<!-- Legal Links -->
+		<div class="flex flex-col gap-3">
+			<h3 class="text-base font-bold text-foreground">
+				{m["footer.legal"]()}
+			</h3>
+			<a href="/terms/" class="text-sm text-muted hover:underline">
+				{m["footer.terms_and_conditions"]()}
+			</a>
+			<a href="/privacy/" class="text-sm text-muted hover:underline">
+				{m["footer.privacy_policy"]()}
+			</a>
+		</div>
+
+		<!-- Contact Methods -->
+		<div class="flex flex-col gap-3">
+			<h3 class="text-base font-bold text-foreground">
+				{m["footer.contact_methods"]()}
+			</h3>
+			<div class="flex gap-4">
+				<a
+					href="mailto:{CONTACT_EMAIL}"
+					class="w-10 h-10 rounded-full border-2 border-separator flex items-center justify-center text-foreground hover:bg-panel-highlight transition-colors"
+					title={m["footer.email"]()}
+				>
+					<MailIcon size="20" />
+				</a>
+				<a
+					href="/help/"
+					class="w-10 h-10 rounded-full border-2 border-separator flex items-center justify-center text-foreground hover:bg-panel-highlight transition-colors"
+					title={m["footer.help"]()}
+				>
+					<HelpCircleIcon size="20" />
+				</a>
+				<a
+					href="/docs/"
+					class="w-10 h-10 rounded-full border-2 border-separator flex items-center justify-center text-foreground hover:bg-panel-highlight transition-colors"
+					title={m["footer.documentation"]()}
+				>
+					<BookOpenIcon size="20" />
+				</a>
+			</div>
+		</div>
+	</div>
 </footer>

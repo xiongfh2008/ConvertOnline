@@ -140,7 +140,10 @@
 			<img
 				class="object-cover w-full h-full blur-md"
 				src={files.files[0].blobUrl}
-				alt={files.files[0].name}
+				alt={`Background image: ${files.files[0].name}`}
+				loading="lazy"
+				decoding="async"
+				aria-hidden="true"
 			/>
 			<div
 				class="absolute top-0 left-0 w-full h-full"

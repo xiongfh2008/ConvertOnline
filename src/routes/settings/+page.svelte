@@ -7,7 +7,7 @@
 	import { onMount } from "svelte";
 	import { m } from "$lib/paraglide/messages";
 	import { ToastManager } from "$lib/util/toast.svelte";
-	import { DISABLE_ALL_EXTERNAL_REQUESTS } from "$lib/util/consts";
+	import { DISABLE_ALL_EXTERNAL_REQUESTS, VERT_NAME } from "$lib/util/consts";
 
 	let settings = $state(Settings.Settings.instance.settings);
 
@@ -53,6 +53,25 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Settings — {VERT_NAME} | File Converter Settings</title>
+	<meta
+		name="description"
+		content="Configure {VERT_NAME} file converter settings. Customize filename format, default conversion formats, quality settings, metadata handling, and video conversion options. Manage cache and privacy settings."
+	/>
+	<meta
+		name="keywords"
+		content="file converter settings, converter configuration, file conversion settings, filename format, conversion quality, metadata settings, video conversion settings, 文件转换器设置, 转换器配置"
+	/>
+	<meta property="og:title" content="Settings — {VERT_NAME} | File Converter Settings" />
+	<meta
+		property="og:description"
+		content="Configure {VERT_NAME} file converter settings. Customize filename format, default conversion formats, quality settings, and more."
+	/>
+	<meta property="og:type" content="website" />
+	<link rel="canonical" href="https://vert.sh/settings/" />
+</svelte:head>
+
 <div class="flex flex-col h-full items-center">
 	<h1 class="hidden md:block text-[40px] tracking-tight leading-[72px] mb-6">
 		<SettingsIcon size="40" class="inline-block -mt-2 mr-2" />
@@ -60,19 +79,15 @@
 	</h1>
 
 	<div
-		class="w-full max-w-[1280px] flex flex-col md:flex-row gap-4 p-4 md:px-4 md:py-0"
+		class="w-full max-w-[1280px] mx-auto flex flex-col gap-4 p-4 md:px-4 md:py-0"
 	>
-		<div class="flex flex-col gap-4 flex-1">
+		<div class="flex flex-col gap-4">
 			<Settings.Conversion bind:settings />
 			{#if !DISABLE_ALL_EXTERNAL_REQUESTS}
 				<Settings.Vertd bind:settings />
 			{:else if PUB_PLAUSIBLE_URL}
 				<Settings.Privacy bind:settings />
 			{/if}
-		</div>
-
-		<div class="flex flex-col gap-4 flex-1">
-			<Settings.Appearance />
 			{#if PUB_PLAUSIBLE_URL && !DISABLE_ALL_EXTERNAL_REQUESTS}
 				<Settings.Privacy bind:settings />
 			{/if}

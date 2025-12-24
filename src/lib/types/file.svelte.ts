@@ -275,7 +275,7 @@ export class VertFile {
 		if (!to.startsWith(".")) to = `.${to}`;
 
 		const settings = JSON.parse(localStorage.getItem("settings") ?? "{}");
-		const filenameFormat = settings.filenameFormat || "Toolkitlife_%name%";
+		const filenameFormat = settings.filenameFormat || "ConvertOnline_%name%";
 
 		const format = (name: string) => {
 			const date = new Date().toISOString();

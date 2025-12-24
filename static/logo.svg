@@ -27,7 +27,7 @@
    <circle cx="52" cy="32" r="2" fill="white" opacity="0.85" transform="rotate(-8 52 32)"/>
   </g>
   
-  <!-- "Toolkitlife" text - Clean sans-serif -->
+  <!-- "ConvertOnline" text - Clean sans-serif -->
   <g fill="url(#toolkitlifeGradient)">
     <!-- C -->
     <path d="M78 16 C 78 16, 78 16, 78 20 L 78 38 C 78 42, 78 42, 82 42 L 90 42 C 94 42, 94 42, 94 38 L 94 32 L 88 32 L 88 36 L 82 36 L 82 22 L 88 22 L 88 26 L 94 26 L 94 20 C 94 16, 94 16, 90 16 L 82 16 C 78 16, 78 16, 78 20 Z"/>

@@ -383,7 +383,7 @@ class Files {
 		const url = URL.createObjectURL(blob);
 
 		const settings = JSON.parse(localStorage.getItem("settings") ?? "{}");
-		const filenameFormat = settings.filenameFormat || "Toolkitlife_%name%";
+		const filenameFormat = settings.filenameFormat || "ConvertOnline_%name%";
 
 		const format = (name: string) => {
 			const date = new Date().toISOString();
@@ -436,7 +436,7 @@ export const dropdownStates = writable<Record<string, string>>({});
 
 export const isMobile = writable(false);
 export const effects = writable(true);
-export const theme = writable<"light" | "dark">("light");
+export const theme = writable<"light" | "dark">("dark");
 export const locale = writable(getLocale());
 export const availableLocales = {
 	en: "English",

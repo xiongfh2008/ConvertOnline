@@ -55,4 +55,20 @@
 			{m["about.resources.email"]()}
 		</a>
 	</div>
+	<div class="mt-2 pt-4 border-t border-panel-alt">
+		<p class="text-sm text-muted mb-2">Quick links:</p>
+		<div class="flex flex-wrap gap-2">
+			<a href="/faq" class="text-accent-blue hover:underline text-sm">FAQ</a>
+			<span class="text-muted">•</span>
+			<a href="/convert" class="text-accent-blue hover:underline text-sm">Convert Files</a>
+			<span class="text-muted">•</span>
+			<a href="/settings" class="text-accent-blue hover:underline text-sm">Settings</a>
+			<span class="text-muted">•</span>
+			<a href="/contact" class="text-accent-blue hover:underline text-sm">Contact</a>
+			<span class="text-muted">•</span>
+			<a href="/privacy" class="text-accent-blue hover:underline text-sm">Privacy</a>
+			<span class="text-muted">•</span>
+			<a href="/terms" class="text-accent-blue hover:underline text-sm">Terms</a>
+		</div>
+	</div>
 </Panel>

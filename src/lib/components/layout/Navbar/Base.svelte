@@ -6,7 +6,6 @@
 		effects,
 		files,
 		goingLeft,
-		setTheme,
 		updateLocale,
 		availableLocales,
 		locale,
@@ -15,10 +14,8 @@
 	import {
 		Globe,
 		InfoIcon,
-		MoonIcon,
 		RefreshCw,
 		SettingsIcon,
-		SunIcon,
 		UploadIcon,
 		type Icon as IconType,
 	} from "lucide-svelte";
@@ -26,7 +23,6 @@
 	import Panel from "../../visual/Panel.svelte";
 	import Logo from "../../visual/svg/Logo.svelte";
 	import { beforeNavigate } from "$app/navigation";
-	import Tooltip from "$lib/components/visual/Tooltip.svelte";
 	import { m } from "$lib/paraglide/messages";
 	import { getLocale } from "$lib/paraglide/runtime";
 	import Dropdown from "$lib/components/functional/Dropdown.svelte";
@@ -323,12 +319,10 @@
 			></div>
 		{/if}
 		<a
-			class="w-28 h-full bg-accent rounded-xl items-center justify-center hidden md:flex"
+			class="w-28 h-full bg-accent rounded-xl items-center justify-center hidden md:flex overflow-hidden"
 			href="/"
 		>
-			<div class="h-5 w-full">
-				<Logo />
-			</div>
+			<Logo class="w-full h-full" />
 		</a>
 		{#each items as item, i (item.url)}
 			{@render link(item, i)}
@@ -344,18 +338,5 @@
 				/>
 			</div>
 		</div>
-		<Tooltip text={m["navbar.toggle_theme"]()} position="right">
-			<button
-				onclick={() => {
-					const isDark =
-						document.documentElement.classList.contains("dark");
-					setTheme(isDark ? "light" : "dark");
-				}}
-				class="w-14 h-full items-center justify-center flex"
-			>
-				<SunIcon class="dynadark:hidden block" />
-				<MoonIcon class="dynadark:block hidden" />
-			</button>
-		</Tooltip>
 	</Panel>
 </div>

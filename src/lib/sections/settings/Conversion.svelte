@@ -42,12 +42,12 @@
 					<p class="text-base font-bold">
 						{m["settings.conversion.filename_format"]()}
 					</p>
-					<p class="text-sm text-muted font-normal">
+					<p class="text-lg font-normal">
 						{@html sanitize(m["settings.conversion.filename_description"]())}
 					</p>
 				</div>
 				<FancyTextInput
-					placeholder="Toolkitlife_%name%"
+					placeholder="ConvertOnline_%name%"
 					bind:value={settings.filenameFormat}
 					extension={".ext"}
 					type="text"
@@ -81,7 +81,7 @@
 								<p class="text-base font-bold">
 									{m["settings.conversion.default_format"]()}
 								</p>
-								<p class="text-sm text-muted font-normal">
+								<p class="text-lg font-normal">
 									{m[
 										"settings.conversion.default_format_description"
 									]()}
@@ -193,9 +193,7 @@
 								<p class="text-base font-bold">
 									{m["settings.conversion.metadata"]()}
 								</p>
-								<p
-									class="text-sm text-muted font-normal"
-								>
+								<p class="text-lg font-normal">
 									{m[
 										"settings.conversion.metadata_description"
 									]()}
@@ -242,7 +240,7 @@
 								<p class="text-base font-bold">
 									{m["settings.conversion.quality"]()}
 								</p>
-								<p class="text-sm text-muted font-normal">
+								<p class="text-lg font-normal">
 									{m[
 										"settings.conversion.quality_description"
 									]()}

@@ -1,4 +1,5 @@
 import { browser } from "$app/environment";
+import { getCurrentPosition, isGeolocationSupported } from "./geolocation.js";
 
 export interface IpInfo {
 	ip: string;
@@ -28,18 +29,63 @@ export interface IpInfo {
 	country_population: number;
 	asn: string;
 	org: string;
+	// Enhanced with browser geolocation if available
+	useBrowserGeolocation?: boolean;
+	browserAccuracy?: number;
 }
 
-export const ip = async (): Promise<IpInfo> => {
+/**
+ * Get user location information
+ * @param useBrowserGeolocation - If true, try to use browser Geolocation API for more accurate position
+ * @returns Promise with location information
+ */
+export const ip = async (
+	useBrowserGeolocation = false,
+): Promise<IpInfo> => {
 	try {
 		if (browser) {
 			const item = localStorage.getItem("ipinfo");
 			if (item) {
-				return JSON.parse(item);
+				const cached = JSON.parse(item);
+				// If browser geolocation is requested and supported, try to enhance with accurate position
+				if (useBrowserGeolocation && isGeolocationSupported()) {
+					try {
+						const position = await getCurrentPosition({
+							enableHighAccuracy: true,
+							timeout: 5000,
+							maximumAge: 0,
+						});
+						cached.latitude = position.latitude;
+						cached.longitude = position.longitude;
+						cached.useBrowserGeolocation = true;
+						cached.browserAccuracy = position.accuracy;
+					} catch {
+						// Fall back to IP-based location if geolocation fails
+					}
+				}
+				return cached;
 			}
 		}
 
 		const res = await fetch("https://ipapi.co/json/").then((r) => r.json());
+		
+		// Enhance with browser geolocation if requested and available
+		if (browser && useBrowserGeolocation && isGeolocationSupported()) {
+			try {
+				const position = await getCurrentPosition({
+					enableHighAccuracy: true,
+					timeout: 5000,
+					maximumAge: 0,
+				});
+				res.latitude = position.latitude;
+				res.longitude = position.longitude;
+				res.useBrowserGeolocation = true;
+				res.browserAccuracy = position.accuracy;
+			} catch {
+				// Fall back to IP-based location if geolocation fails
+			}
+		}
+
 		if (browser) {
 			localStorage.setItem("ipinfo", JSON.stringify(res));
 		}

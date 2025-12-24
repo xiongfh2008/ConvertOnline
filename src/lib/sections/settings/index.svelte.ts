@@ -35,7 +35,7 @@ export class Settings {
 	public static instance = new Settings();
 
 	public settings: ISettings = $state({
-		filenameFormat: "Toolkitlife_%name%",
+		filenameFormat: "ConvertOnline_%name%",
 		defaultFormat: {
 			image: ".png",
 			video: ".mp4",

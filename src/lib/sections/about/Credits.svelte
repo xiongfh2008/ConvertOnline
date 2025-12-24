@@ -27,13 +27,15 @@
 		>
 			<img
 				src={avatar}
-				alt={name}
+				alt={`${name}${role ? ` - ${role}` : ''} avatar`}
 				title={name}
 				class="{smaller
 					? 'w-12 h-12 hoverable'
 					: role
 						? 'w-14 h-14 hoverable-md'
 						: 'w-10 h-10 hoverable-lg'} rounded-full"
+				loading="lazy"
+				decoding="async"
 			/>
 		</a>
 		{#if role}
@@ -76,9 +78,9 @@
 	<!-- Notable contributors -->
 	<div class="flex flex-col gap-4">
 		<div class="flex flex-col gap-1">
-			<h2 class="text-base font-bold">
+			<h3 class="text-base font-bold">
 				{m["about.credits.notable_contributors"]()}
-			</h2>
+			</h3>
 			<div class="flex flex-col gap-2">
 				<p class="text-base text-muted font-normal">
 					{m["about.credits.notable_description"]()}
@@ -96,9 +98,9 @@
 		{#if !DISABLE_ALL_EXTERNAL_REQUESTS}
 			<div class="flex flex-col gap-4">
 				<div class="flex flex-col gap-1">
-					<h2 class="text-base font-bold">
+					<h3 class="text-base font-bold">
 						{m["about.credits.github_contributors"]()}
-					</h2>
+					</h3>
 					{#if ghContribs && ghContribs.length > 0}
 						<p class="text-base text-muted font-normal">
 							{@html sanitize(
@@ -134,7 +136,7 @@
 				{/if}
 			</div>
 
-			<h2 class="mt-2 -mb-2">{m["about.credits.libraries"]()}</h2>
+			<h3 class="mt-2 -mb-2 text-base font-bold">{m["about.credits.libraries"]()}</h3>
 			<p class="font-normal">
 				{m["about.credits.libraries_description"]()}
 			</p>

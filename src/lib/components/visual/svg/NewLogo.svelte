@@ -1,5 +1,5 @@
 <script>
-	// New Modern Toolkitlife Logo - Clean and minimalist design
+	// New Modern ConvertOnline Logo - Clean and minimalist design
 	let { class: className = "", width = "100%", height = "100%" } = $props();
 </script>
 
@@ -37,7 +37,7 @@
 		<circle cx="50" cy="34" r="2" fill="white" opacity="0.8" transform="rotate(-10 50 34)"/>
 	</g>
 	
-	<!-- "Toolkitlife" text - Modern sans-serif style with gradient -->
+	<!-- "ConvertOnline" text - Modern sans-serif style with gradient -->
 	<g fill="url(#logoGradient)">
 		<!-- V -->
 		<path d="M85 16 L85 42 L90 42 L94 26 L98 42 L103 42 L103 16 L98 16 L94 30 L90 16 L85 16 Z"/>

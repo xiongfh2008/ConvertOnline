@@ -1,32 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
+  <!-- Homepage -->
   <url>
     <loc>https://vert.sh/</loc>
-    <lastmod>2025-10-17T19:23:05+00:00</lastmod>
+    <lastmod>2025-01-17T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.00</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vert.sh/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://vert.sh/?lang=zh-Hans" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://vert.sh/?lang=zh-Hant" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vert.sh/" />
   </url>
+
+  <!-- Convert Page -->
   <url>
     <loc>https://vert.sh/convert/</loc>
-    <lastmod>2025-10-17T19:23:05+00:00</lastmod>
-    <priority>0.80</priority>
+    <lastmod>2025-01-17T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
-  <url>
-    <loc>https://vert.sh/settings/</loc>
-    <lastmod>2025-10-17T19:23:05+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
+
+  <!-- About Page -->
   <url>
     <loc>https://vert.sh/about/</loc>
-    <lastmod>2025-10-17T19:23:05+00:00</lastmod>
+    <lastmod>2025-01-17T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
+
+  <!-- FAQ Page -->
+  <url>
+    <loc>https://vert.sh/faq/</loc>
+    <lastmod>2025-01-17T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://vert.sh/contact/</loc>
+    <lastmod>2025-01-17T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Settings Page -->
+  <url>
+    <loc>https://vert.sh/settings/</loc>
+    <lastmod>2025-01-17T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- Privacy Policy -->
   <url>
     <loc>https://vert.sh/privacy/</loc>
-    <lastmod>2025-10-17T19:23:05+00:00</lastmod>
-    <priority>0.80</priority>
+    <lastmod>2025-01-17T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+
+  <!-- Terms and Conditions -->
+  <url>
+    <loc>https://vert.sh/terms/</loc>
+    <lastmod>2025-01-17T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
   </url>
 </urlset>

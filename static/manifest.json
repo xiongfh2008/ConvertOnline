@@ -1,21 +1,45 @@
 {
-	"name": "Toolkitlife",
-	"short_name": "Toolkitlife",
-	"description": "The file converter you'll love",
+	"name": "ConvertOnline - Free Online File Converter",
+	"short_name": "ConvertOnline",
+	"description": "Free online file converter supporting 250+ formats. Convert images, audio, documents, and videos locally on your device using WebAssembly. No file size limit, no ads, privacy-focused, and open source.",
 	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#ffffff",
 	"theme_color": "#7C3AED",
+	"orientation": "any",
+	"scope": "/",
+	"lang": "en",
+	"dir": "ltr",
+	"categories": ["utilities", "productivity", "tools"],
+	"shortcuts": [
+		{
+			"name": "Convert Files",
+			"short_name": "Convert",
+			"description": "Start converting files",
+			"url": "/convert/",
+			"icons": [
+				{
+					"src": "lettermark.jpg",
+					"sizes": "192x192"
+				}
+			]
+		}
+	],
 	"icons": [
 		{
 			"src": "lettermark.jpg",
 			"sizes": "192x192",
-			"type": "image/jpeg"
+			"type": "image/jpeg",
+			"purpose": "any maskable"
 		},
 		{
 			"src": "lettermark.jpg",
 			"sizes": "512x512",
-			"type": "image/jpeg"
+			"type": "image/jpeg",
+			"purpose": "any maskable"
 		}
-	]
+	],
+	"screenshots": [],
+	"related_applications": [],
+	"prefer_related_applications": false
 }
