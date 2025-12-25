@@ -28,6 +28,32 @@
 	import Dropdown from "$lib/components/functional/Dropdown.svelte";
 	import { onMount } from "svelte";
 
+	// Helper function to safely get message, fallback to English if locale is invalid
+	const safeGetMessage = (key: keyof typeof m) => {
+		try {
+			return m[key]();
+		} catch (error) {
+			// If locale is invalid, try to fix it and retry
+			const savedLocale = localStorage.getItem("locale");
+			const supportedLocales = Object.keys(availableLocales);
+			if (savedLocale && !supportedLocales.includes(savedLocale)) {
+				localStorage.removeItem("locale");
+				try {
+					updateLocale("en");
+				} catch {
+					// Ignore errors
+				}
+			}
+			// Retry with English locale
+			try {
+				return m[key]();
+			} catch {
+				// Ultimate fallback - return key name
+				return key.replace("navbar.", "").replace(".", " ");
+			}
+		}
+	};
+
 	const items = $derived<
 		{
 			name: string;
@@ -38,13 +64,13 @@
 		}[]
 	>([
 		{
-			name: m["navbar.upload"](),
+			name: safeGetMessage("navbar.upload"),
 			url: "/",
 			activeMatch: (pathname) => pathname === "/",
 			icon: UploadIcon,
 		},
 		{
-			name: m["navbar.convert"](),
+			name: safeGetMessage("navbar.convert"),
 			url: "/convert/",
 			activeMatch: (pathname) =>
 				pathname === "/convert/" || pathname === "/convert",
@@ -52,13 +78,13 @@
 			badge: files.files.length,
 		},
 		{
-			name: m["navbar.settings"](),
+			name: safeGetMessage("navbar.settings"),
 			url: "/settings/",
 			activeMatch: (pathname) => pathname.startsWith("/settings"),
 			icon: SettingsIcon,
 		},
 		{
-			name: m["navbar.about"](),
+			name: safeGetMessage("navbar.about"),
 			url: "/about/",
 			activeMatch: (pathname) => pathname.startsWith("/about"),
 			icon: InfoIcon,
@@ -129,10 +155,22 @@
 	}
 
 	onMount(() => {
-		// Get locale from localStorage or paraglide, but ensure it's valid
+		// First, check and fix invalid locale in localStorage BEFORE anything else
 		const savedLocale = localStorage.getItem("locale");
 		const supportedLocales = Object.keys(availableLocales);
 		
+		// If saved locale is invalid (e.g., "ru"), remove it immediately
+		if (savedLocale && !supportedLocales.includes(savedLocale)) {
+			localStorage.removeItem("locale");
+			// Force set locale to English to fix paraglide state
+			try {
+				updateLocale("en");
+			} catch {
+				// Ignore errors during locale fix
+			}
+		}
+		
+		// Now safely get locale
 		if (savedLocale && supportedLocales.includes(savedLocale)) {
 			currentLocale = savedLocale;
 		} else {
@@ -143,9 +181,15 @@
 					currentLocale = detectedLocale;
 				} else {
 					currentLocale = "en"; // Fallback to English
+					updateLocale("en");
 				}
 			} catch {
 				currentLocale = "en"; // Fallback to English if getLocale() throws
+				try {
+					updateLocale("en");
+				} catch {
+					// Ignore errors during locale fix
+				}
 			}
 		}
 		

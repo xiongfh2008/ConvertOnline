@@ -21,7 +21,7 @@
 		content="Frequently asked questions about {VERT_NAME} file converter. Learn about supported formats, file size limits, conversion process, privacy, and more."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://vert.sh/faq/" />
+	<link rel="canonical" href="https://convertonline.toolkitlife.com/faq/" />
 	<script type="application/ld+json">
 		{JSON.stringify({
 			"@context": "https://schema.org",

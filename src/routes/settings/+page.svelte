@@ -70,7 +70,7 @@
 		content="Configure {VERT_NAME} file converter settings. Customize filename format, default conversion formats, quality settings, and more."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://vert.sh/settings/" />
+	<link rel="canonical" href="https://convertonline.toolkitlife.com/settings/" />
 </svelte:head>
 
 <div class="flex flex-col h-full items-center">

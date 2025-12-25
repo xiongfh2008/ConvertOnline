@@ -22,19 +22,19 @@
 		content="Contact {VERT_NAME} team for questions, support, feedback, or partnerships. Reach us via email."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://vert.sh/contact/" />
+	<link rel="canonical" href="https://convertonline.toolkitlife.com/contact/" />
 	<script type="application/ld+json">
 		{JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "ContactPage",
 			"name": "Contact Us",
-			"description": "Contact {VERT_NAME} team for questions, support, feedback, or partnerships.",
-			"url": "https://vert.sh/contact/",
+			"description": `Contact ${VERT_NAME} team for questions, support, feedback, or partnerships.`,
+			"url": "https://convertonline.toolkitlife.com/contact/",
 			"mainEntity": {
 				"@type": "Organization",
 				"name": VERT_NAME,
 				"email": CONTACT_EMAIL,
-				"url": "https://vert.sh"
+				"url": "https://convertonline.toolkitlife.com"
 			}
 		})}
 	</script>

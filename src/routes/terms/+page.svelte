@@ -21,14 +21,14 @@
 		content="Terms and Conditions for {VERT_NAME} - a free, privacy-focused file converter. Read our terms of service and user agreement."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://toolkitlife.com/terms/" />
+	<link rel="canonical" href="https://convertonline.toolkitlife.com/terms/" />
 	<script type="application/ld+json">
 		{JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "WebPage",
 			"name": "Terms and Conditions",
-			"description": "Terms and Conditions for {VERT_NAME} file converter service.",
-			"url": "https://toolkitlife.com/terms/"
+			"description": `Terms and Conditions for ${VERT_NAME} file converter service.`,
+			"url": "https://convertonline.toolkitlife.com/terms/"
 		})}
 	</script>
 </svelte:head>

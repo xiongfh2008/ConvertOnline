@@ -21,7 +21,7 @@
 		content="Privacy policy for {VERT_NAME}. Learn how we protect your data with local file processing, no tracking, and complete privacy."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://toolkitlife.com/privacy/" />
+	<link rel="canonical" href="https://convertonline.toolkitlife.com/privacy/" />
 </svelte:head>
 
 <div class="flex flex-col h-full items-center">

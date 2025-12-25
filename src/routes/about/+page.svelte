@@ -160,7 +160,7 @@
 		content="Learn about {VERT_NAME}, a free, open-source file converter that processes files locally on your device using WebAssembly. No ads, no tracking, privacy-focused."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://vert.sh/about/" />
+	<link rel="canonical" href="https://convertonline.toolkitlife.com/about/" />
 </svelte:head>
 
 <div class="flex flex-col h-full items-center">

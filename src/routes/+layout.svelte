@@ -19,6 +19,7 @@
 		vertdLoaded,
 		locale,
 		updateLocale,
+		availableLocales,
 	} from "$lib/store/index.svelte";
 	import "$lib/css/app.scss";
 	import { browser } from "$app/environment";
@@ -81,7 +82,13 @@
 			(localStorage.getItem("theme") as "light" | "dark") || "dark",
 		);
 		const storedLocale = localStorage.getItem("locale");
-		if (storedLocale) updateLocale(storedLocale);
+		// Only update locale if it's in the supported list
+		if (storedLocale && Object.keys(availableLocales).includes(storedLocale)) {
+			updateLocale(storedLocale);
+		} else if (storedLocale) {
+			// Remove invalid locale from localStorage
+			localStorage.removeItem("locale");
+		}
 
 		Settings.instance.load();
 
@@ -127,7 +134,7 @@
 		name="keywords"
 		content="file converter, online file converter, free file converter, local file converter, privacy-focused converter, WebAssembly converter, 250+ formats, no file size limit, image converter, audio converter, video converter, document converter, open source converter, secure file conversion, browser-based converter, JPEG converter, PNG converter, MP3 converter, WAV converter, PDF converter, DOCX converter, MP4 converter, AVI converter, file format converter, multi-format converter, universal converter, client-side converter, offline file converter, unlimited file size converter, 文件转换器, 在线文件转换, 免费文件转换器, 本地文件转换, 隐私保护转换器"
 	/>
-	<meta property="og:url" content="https://vert.sh" />
+	<meta property="og:url" content="https://convertonline.toolkitlife.com" />
 	<meta property="og:type" content="website" />
 	<meta
 		property="og:title"
@@ -139,8 +146,8 @@
 	/>
 	<meta property="og:image" content={featuredImage} />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta property="twitter:domain" content="vert.sh" />
-	<meta property="twitter:url" content="https://vert.sh" />
+	<meta property="twitter:domain" content="convertonline.toolkitlife.com" />
+	<meta property="twitter:url" content="https://convertonline.toolkitlife.com" />
 	<meta
 		property="twitter:title"
 		content="{VERT_NAME} — Free Online File Converter | 250+ Formats | No Size Limit"
@@ -151,7 +158,7 @@
 	/>
 	<meta property="twitter:image" content={featuredImage} />
 	<link rel="manifest" href="/manifest.json" />
-	<link rel="canonical" href="https://vert.sh/" />
+	<link rel="canonical" href="https://convertonline.toolkitlife.com/" />
 	<meta name="author" content="ConvertOnline" />
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 	<meta name="googlebot" content="index, follow" />
@@ -165,7 +172,7 @@
 			"name": VERT_NAME,
 			"alternateName": "ConvertOnline File Converter",
 			"description": "Free online file converter supporting 250+ formats. Convert images, audio, documents, and videos locally on your device using WebAssembly. No file size limit, no ads, privacy-focused, and open source.",
-			"url": "https://vert.sh",
+			"url": "https://convertonline.toolkitlife.com",
 			"applicationCategory": "UtilityApplication",
 			"operatingSystem": "Web Browser",
 			"browserRequirements": "Requires JavaScript. Requires HTML5.",
@@ -196,8 +203,8 @@
 			"creator": {
 				"@type": "Organization",
 				"name": "ConvertOnline",
-				"url": "https://vert.sh",
-				"sameAs": "https://vert.sh"
+				"url": "https://convertonline.toolkitlife.com",
+				"sameAs": "https://convertonline.toolkitlife.com"
 			},
 			"keywords": "file converter, online file converter, free file converter, local file converter, privacy-focused converter, WebAssembly converter, 250+ formats, no file size limit, image converter, audio converter, video converter, document converter, open source converter, secure file conversion, browser-based converter",
 			"inLanguage": ["en", "zh-Hans", "zh-Hant", "es", "fr", "de", "it", "ja", "ko", "tr", "hr", "el", "id", "pt-BR"],
@@ -210,23 +217,23 @@
 			"@context": "https://schema.org",
 			"@type": "WebSite",
 			"name": VERT_NAME,
-			"url": "https://vert.sh",
+			"url": "https://convertonline.toolkitlife.com",
 			"potentialAction": {
 				"@type": "SearchAction",
-				"target": "https://vert.sh/convert/?q={search_term_string}",
+				"target": "https://convertonline.toolkitlife.com/convert/?q={search_term_string}",
 				"query-input": "required name=search_term_string"
 			},
 			"publisher": {
 				"@type": "Organization",
 				"name": "ConvertOnline",
-				"url": "https://vert.sh"
+				"url": "https://convertonline.toolkitlife.com"
 			}
 		})}
 	</script>
 	{#if enablePlausible}
 		<script
 			defer
-			data-domain={PUB_HOSTNAME || "vert.sh"}
+			data-domain={PUB_HOSTNAME || "convertonline.toolkitlife.com"}
 			src="{PUB_PLAUSIBLE_URL}/js/script.js"
 		></script>
 	{/if}

@@ -154,7 +154,7 @@
 		content="Convert your files online with {VERT_NAME}. Support for 250+ formats including images, audio, documents, and videos. Batch conversion, no file size limits."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://vert.sh/convert/" />
+	<link rel="canonical" href="https://convertonline.toolkitlife.com/convert/" />
 </svelte:head>
 
 {#snippet fileItem(file: VertFile, index: number)}

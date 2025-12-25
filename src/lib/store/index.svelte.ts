@@ -465,9 +465,16 @@ function getSafeLocale(): string {
 		if (savedLocale && supportedLocales.includes(savedLocale)) {
 			return savedLocale;
 		}
-		// If saved locale is invalid (e.g., "ru"), remove it
+		// If saved locale is invalid (e.g., "ru"), remove it and fix paraglide state
 		if (savedLocale && !supportedLocales.includes(savedLocale)) {
 			localStorage.removeItem("locale");
+			// Immediately fix paraglide state to prevent errors
+			try {
+				// @ts-expect-error shush
+				setLocale("en", { reload: false });
+			} catch {
+				// Ignore errors during locale fix
+			}
 		}
 	}
 	
@@ -476,10 +483,25 @@ function getSafeLocale(): string {
 		const detectedLocale = getLocale();
 		if (supportedLocales.includes(detectedLocale)) {
 			return detectedLocale;
+		} else {
+			// If detected locale is invalid, fix it
+			try {
+				// @ts-expect-error shush
+				setLocale("en", { reload: false });
+			} catch {
+				// Ignore errors during locale fix
+			}
 		}
 	} catch (e) {
 		// If getLocale() throws an error (e.g., invalid locale like "ru"), fall back to "en"
 		log(["locale"], `Invalid locale detected, falling back to "en"`);
+		// Try to fix paraglide state
+		try {
+			// @ts-expect-error shush
+			setLocale("en", { reload: false });
+		} catch {
+			// Ignore errors during locale fix
+		}
 	}
 	
 	// Default to English if nothing else works
@@ -489,14 +511,44 @@ function getSafeLocale(): string {
 export const locale = writable(getSafeLocale());
 
 export function updateLocale(newLocale: string) {
-	if (!Object.keys(availableLocales).includes(newLocale)) newLocale = "en";
+	const supportedLocales = Object.keys(availableLocales);
+	
+	// Validate locale before setting
+	if (!supportedLocales.includes(newLocale)) {
+		log(["locale"], `Invalid locale "${newLocale}", falling back to "en"`);
+		newLocale = "en";
+	}
 
 	log(["locale"], `set to ${newLocale}`);
 	localStorage.setItem("locale", newLocale);
-	// @ts-expect-error shush
-	setLocale(newLocale, { reload: false });
-	// @ts-expect-error shush
-	locale.set(newLocale);
+	
+	try {
+		// @ts-expect-error shush
+		setLocale(newLocale, { reload: false });
+		// @ts-expect-error shush
+		locale.set(newLocale);
+	} catch (error) {
+		// If setLocale fails (e.g., invalid locale in paraglide state), try to fix it
+		log(["locale", "error"], `Failed to set locale: ${error}`);
+		// Force remove invalid locale from localStorage
+		if (browser) {
+			const savedLocale = localStorage.getItem("locale");
+			if (savedLocale && !supportedLocales.includes(savedLocale)) {
+				localStorage.removeItem("locale");
+			}
+		}
+		// Retry with English
+		try {
+			// @ts-expect-error shush
+			setLocale("en", { reload: false });
+			// @ts-expect-error shush
+			locale.set("en");
+			localStorage.setItem("locale", "en");
+		} catch {
+			// If even English fails, log but don't throw
+			log(["locale", "error"], "Failed to set locale to English");
+		}
+	}
 }
 
 export function link(
