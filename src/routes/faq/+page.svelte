@@ -3,6 +3,110 @@
 	import { link, sanitize } from "$lib/store/index.svelte";
 	import { HelpCircleIcon } from "lucide-svelte";
 	import { VERT_NAME } from "$lib/util/consts.js";
+
+	// Pre-build JSON-LD structured data
+	const faqPageJson = JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": [
+			{
+				"@type": "Question",
+				"name": String(m["faq.what_is.title"]()),
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": String(m["faq.what_is.description"]())
+				}
+			},
+			{
+				"@type": "Question",
+				"name": String(m["faq.supported_formats.title"]()),
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": String(m["faq.supported_formats.description"]())
+				}
+			},
+			{
+				"@type": "Question",
+				"name": String(m["faq.file_size.title"]()),
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": String(m["faq.file_size.description"]())
+				}
+			},
+			{
+				"@type": "Question",
+				"name": String(m["faq.conversion_location.title"]()),
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": String(m["faq.conversion_location.description"]())
+				}
+			},
+			{
+				"@type": "Question",
+				"name": String(m["faq.video_conversion.title"]()),
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": String(m["faq.video_conversion.description"]())
+				}
+			},
+			{
+				"@type": "Question",
+				"name": String(m["faq.filename.title"]()),
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": String(m["faq.filename.description"]())
+				}
+			},
+			{
+				"@type": "Question",
+				"name": String(m["faq.default_format.title"]()),
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": String(m["faq.default_format.description"]())
+				}
+			},
+			{
+				"@type": "Question",
+				"name": String(m["faq.quality.title"]()),
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": String(m["faq.quality.description"]())
+				}
+			},
+			{
+				"@type": "Question",
+				"name": String(m["faq.metadata.title"]()),
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": String(m["faq.metadata.description"]())
+				}
+			},
+			{
+				"@type": "Question",
+				"name": String(m["faq.batch.title"]()),
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": String(m["faq.batch.description"]())
+				}
+			},
+			{
+				"@type": "Question",
+				"name": String(m["faq.errors.title"]()),
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": String(m["faq.errors.description"]())
+				}
+			},
+			{
+				"@type": "Question",
+				"name": String(m["faq.cache.title"]()),
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": String(m["faq.cache.description"]())
+				}
+			}
+		]
+	});
 </script>
 
 <svelte:head>
@@ -22,110 +126,7 @@
 	/>
 	<meta property="og:type" content="website" />
 	<link rel="canonical" href="https://convertonline.toolkitlife.com/faq/" />
-	<script type="application/ld+json">
-		{JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "FAQPage",
-			"mainEntity": [
-				{
-					"@type": "Question",
-					"name": String(m["faq.what_is.title"]()),
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": String(m["faq.what_is.description"]())
-					}
-				},
-				{
-					"@type": "Question",
-					"name": String(m["faq.supported_formats.title"]()),
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": String(m["faq.supported_formats.description"]())
-					}
-				},
-				{
-					"@type": "Question",
-					"name": String(m["faq.file_size.title"]()),
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": String(m["faq.file_size.description"]())
-					}
-				},
-				{
-					"@type": "Question",
-					"name": String(m["faq.conversion_location.title"]()),
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": String(m["faq.conversion_location.description"]())
-					}
-				},
-				{
-					"@type": "Question",
-					"name": String(m["faq.video_conversion.title"]()),
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": String(m["faq.video_conversion.description"]())
-					}
-				},
-				{
-					"@type": "Question",
-					"name": String(m["faq.filename.title"]()),
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": String(m["faq.filename.description"]())
-					}
-				},
-				{
-					"@type": "Question",
-					"name": String(m["faq.default_format.title"]()),
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": String(m["faq.default_format.description"]())
-					}
-				},
-				{
-					"@type": "Question",
-					"name": String(m["faq.quality.title"]()),
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": String(m["faq.quality.description"]())
-					}
-				},
-				{
-					"@type": "Question",
-					"name": String(m["faq.metadata.title"]()),
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": String(m["faq.metadata.description"]())
-					}
-				},
-				{
-					"@type": "Question",
-					"name": String(m["faq.batch.title"]()),
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": String(m["faq.batch.description"]())
-					}
-				},
-				{
-					"@type": "Question",
-					"name": String(m["faq.errors.title"]()),
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": String(m["faq.errors.description"]())
-					}
-				},
-				{
-					"@type": "Question",
-					"name": String(m["faq.cache.title"]()),
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": String(m["faq.cache.description"]())
-					}
-				}
-			]
-		})}
-	</script>
+	{@html `<script type="application/ld+json">${faqPageJson}</script>`}
 </svelte:head>
 
 <div class="flex flex-col h-full items-center">

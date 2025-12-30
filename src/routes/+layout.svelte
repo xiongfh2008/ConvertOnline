@@ -117,6 +117,70 @@
 			history.pushState = History.prototype.pushState;
 		}
 	});
+
+	// Pre-build JSON-LD structured data to ensure valid JSON output
+	const webAppJson = JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "WebApplication",
+		"name": String(VERT_NAME),
+		"alternateName": "ConvertOnline File Converter",
+		"description": "Free online file converter supporting 250+ formats. Convert images, audio, documents, and videos locally on your device using WebAssembly. No file size limit, no ads, privacy-focused, and open source.",
+		"url": "https://convertonline.toolkitlife.com",
+		"applicationCategory": "UtilityApplication",
+		"operatingSystem": "Web Browser",
+		"browserRequirements": "Requires JavaScript. Requires HTML5.",
+		"offers": {
+			"@type": "Offer",
+			"price": "0",
+			"priceCurrency": "USD"
+		},
+		"aggregateRating": {
+			"@type": "AggregateRating",
+			"ratingValue": "5",
+			"ratingCount": "1"
+		},
+		"featureList": [
+			"Convert 250+ file formats",
+			"Local file processing with WebAssembly",
+			"No file size limits",
+			"Privacy-focused - no tracking",
+			"Open source",
+			"Batch file conversion",
+			"Image, audio, document, and video conversion",
+			"Client-side processing",
+			"Offline capable",
+			"Free and unlimited"
+		],
+		"softwareVersion": "1.10.5",
+		"license": "https://www.gnu.org/licenses/agpl-3.0.html",
+		"creator": {
+			"@type": "Organization",
+			"name": "ConvertOnline",
+			"url": "https://convertonline.toolkitlife.com",
+			"sameAs": "https://convertonline.toolkitlife.com"
+		},
+		"keywords": "file converter, online file converter, free file converter, local file converter, privacy-focused converter, WebAssembly converter, 250+ formats, no file size limit, image converter, audio converter, video converter, document converter, open source converter, secure file conversion, browser-based converter",
+		"inLanguage": ["en", "zh-Hans", "zh-Hant", "es", "fr", "de", "it", "ja", "ko", "tr", "hr", "el", "id", "pt-BR"],
+		"isAccessibleForFree": true,
+		"usageInfo": "ConvertOnline is a free, open-source file conversion tool. Users can upload files and convert them to various formats. Most conversions happen locally in the browser using WebAssembly. Video conversions may be processed on servers. No registration required. No file size limits for most formats."
+	});
+
+	const webSiteJson = JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"name": String(VERT_NAME),
+		"url": "https://convertonline.toolkitlife.com",
+		"potentialAction": {
+			"@type": "SearchAction",
+			"target": "https://convertonline.toolkitlife.com/convert/?q={search_term_string}",
+			"query-input": "required name=search_term_string"
+		},
+		"publisher": {
+			"@type": "Organization",
+			"name": "ConvertOnline",
+			"url": "https://convertonline.toolkitlife.com"
+		}
+	});
 </script>
 
 <svelte:head>
@@ -165,71 +229,8 @@
 	<meta name="language" content="en" />
 	<meta name="revisit-after" content="7 days" />
 	<meta name="rating" content="general" />
-	<script type="application/ld+json">
-		{JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "WebApplication",
-			"name": String(VERT_NAME),
-			"alternateName": "ConvertOnline File Converter",
-			"description": "Free online file converter supporting 250+ formats. Convert images, audio, documents, and videos locally on your device using WebAssembly. No file size limit, no ads, privacy-focused, and open source.",
-			"url": "https://convertonline.toolkitlife.com",
-			"applicationCategory": "UtilityApplication",
-			"operatingSystem": "Web Browser",
-			"browserRequirements": "Requires JavaScript. Requires HTML5.",
-			"offers": {
-				"@type": "Offer",
-				"price": "0",
-				"priceCurrency": "USD"
-			},
-			"aggregateRating": {
-				"@type": "AggregateRating",
-				"ratingValue": "5",
-				"ratingCount": "1"
-			},
-			"featureList": [
-				"Convert 250+ file formats",
-				"Local file processing with WebAssembly",
-				"No file size limits",
-				"Privacy-focused - no tracking",
-				"Open source",
-				"Batch file conversion",
-				"Image, audio, document, and video conversion",
-				"Client-side processing",
-				"Offline capable",
-				"Free and unlimited"
-			],
-			"softwareVersion": "1.10.5",
-			"license": "https://www.gnu.org/licenses/agpl-3.0.html",
-			"creator": {
-				"@type": "Organization",
-				"name": "ConvertOnline",
-				"url": "https://convertonline.toolkitlife.com",
-				"sameAs": "https://convertonline.toolkitlife.com"
-			},
-			"keywords": "file converter, online file converter, free file converter, local file converter, privacy-focused converter, WebAssembly converter, 250+ formats, no file size limit, image converter, audio converter, video converter, document converter, open source converter, secure file conversion, browser-based converter",
-			"inLanguage": ["en", "zh-Hans", "zh-Hant", "es", "fr", "de", "it", "ja", "ko", "tr", "hr", "el", "id", "pt-BR"],
-			"isAccessibleForFree": true,
-			"usageInfo": "ConvertOnline is a free, open-source file conversion tool. Users can upload files and convert them to various formats. Most conversions happen locally in the browser using WebAssembly. Video conversions may be processed on servers. No registration required. No file size limits for most formats."
-		})}
-	</script>
-	<script type="application/ld+json">
-		{JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "WebSite",
-			"name": String(VERT_NAME),
-			"url": "https://convertonline.toolkitlife.com",
-			"potentialAction": {
-				"@type": "SearchAction",
-				"target": "https://convertonline.toolkitlife.com/convert/?q={search_term_string}",
-				"query-input": "required name=search_term_string"
-			},
-			"publisher": {
-				"@type": "Organization",
-				"name": "ConvertOnline",
-				"url": "https://convertonline.toolkitlife.com"
-			}
-		})}
-	</script>
+	{@html `<script type="application/ld+json">${webAppJson}</script>`}
+	{@html `<script type="application/ld+json">${webSiteJson}</script>`}
 	{#if enablePlausible}
 		<script
 			defer

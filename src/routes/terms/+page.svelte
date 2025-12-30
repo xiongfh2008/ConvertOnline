@@ -3,6 +3,15 @@
 	import { link, sanitize } from "$lib/store/index.svelte";
 	import { FileTextIcon } from "lucide-svelte";
 	import { VERT_NAME, CONTACT_EMAIL } from "$lib/util/consts.js";
+
+	// Pre-build JSON-LD structured data
+	const termsPageJson = JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		"name": "Terms and Conditions",
+		"description": `Terms and Conditions for ${VERT_NAME} file converter service.`,
+		"url": "https://convertonline.toolkitlife.com/terms/"
+	});
 </script>
 
 <svelte:head>
@@ -22,15 +31,7 @@
 	/>
 	<meta property="og:type" content="website" />
 	<link rel="canonical" href="https://convertonline.toolkitlife.com/terms/" />
-	<script type="application/ld+json">
-		{JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "WebPage",
-			"name": "Terms and Conditions",
-			"description": `Terms and Conditions for ${VERT_NAME} file converter service.`,
-			"url": "https://convertonline.toolkitlife.com/terms/"
-		})}
-	</script>
+	{@html `<script type="application/ld+json">${termsPageJson}</script>`}
 </svelte:head>
 
 <div class="flex flex-col h-full items-center">

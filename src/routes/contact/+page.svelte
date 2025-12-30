@@ -4,6 +4,21 @@
 	import { MailIcon } from "lucide-svelte";
 	import Panel from "$lib/components/visual/Panel.svelte";
 	import { sanitize } from "$lib/store/index.svelte";
+
+	// Pre-build JSON-LD structured data
+	const contactPageJson = JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "ContactPage",
+		"name": "Contact Us",
+		"description": `Contact ${VERT_NAME} team for questions, support, feedback, or partnerships.`,
+		"url": "https://convertonline.toolkitlife.com/contact/",
+		"mainEntity": {
+			"@type": "Organization",
+			"name": String(VERT_NAME),
+			"email": String(CONTACT_EMAIL),
+			"url": "https://convertonline.toolkitlife.com"
+		}
+	});
 </script>
 
 <svelte:head>
@@ -23,21 +38,7 @@
 	/>
 	<meta property="og:type" content="website" />
 	<link rel="canonical" href="https://convertonline.toolkitlife.com/contact/" />
-	<script type="application/ld+json">
-		{JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "ContactPage",
-			"name": "Contact Us",
-			"description": `Contact ${VERT_NAME} team for questions, support, feedback, or partnerships.`,
-			"url": "https://convertonline.toolkitlife.com/contact/",
-			"mainEntity": {
-				"@type": "Organization",
-				"name": String(VERT_NAME),
-				"email": String(CONTACT_EMAIL),
-				"url": "https://convertonline.toolkitlife.com"
-			}
-		})}
-	</script>
+	{@html `<script type="application/ld+json">${contactPageJson}</script>`}
 </svelte:head>
 
 <div class="flex flex-col h-full items-center">
