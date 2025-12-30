@@ -29,102 +29,102 @@
 			"mainEntity": [
 				{
 					"@type": "Question",
-					"name": m["faq.what_is.title"](),
+					"name": String(m["faq.what_is.title"]()),
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": m["faq.what_is.description"]()
+						"text": String(m["faq.what_is.description"]())
 					}
 				},
 				{
 					"@type": "Question",
-					"name": m["faq.supported_formats.title"](),
+					"name": String(m["faq.supported_formats.title"]()),
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": m["faq.supported_formats.description"]()
+						"text": String(m["faq.supported_formats.description"]())
 					}
 				},
 				{
 					"@type": "Question",
-					"name": m["faq.file_size.title"](),
+					"name": String(m["faq.file_size.title"]()),
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": m["faq.file_size.description"]()
+						"text": String(m["faq.file_size.description"]())
 					}
 				},
 				{
 					"@type": "Question",
-					"name": m["faq.conversion_location.title"](),
+					"name": String(m["faq.conversion_location.title"]()),
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": m["faq.conversion_location.description"]()
+						"text": String(m["faq.conversion_location.description"]())
 					}
 				},
 				{
 					"@type": "Question",
-					"name": m["faq.video_conversion.title"](),
+					"name": String(m["faq.video_conversion.title"]()),
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": m["faq.video_conversion.description"]()
+						"text": String(m["faq.video_conversion.description"]())
 					}
 				},
 				{
 					"@type": "Question",
-					"name": m["faq.filename.title"](),
+					"name": String(m["faq.filename.title"]()),
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": m["faq.filename.description"]()
+						"text": String(m["faq.filename.description"]())
 					}
 				},
 				{
 					"@type": "Question",
-					"name": m["faq.default_format.title"](),
+					"name": String(m["faq.default_format.title"]()),
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": m["faq.default_format.description"]()
+						"text": String(m["faq.default_format.description"]())
 					}
 				},
 				{
 					"@type": "Question",
-					"name": m["faq.quality.title"](),
+					"name": String(m["faq.quality.title"]()),
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": m["faq.quality.description"]()
+						"text": String(m["faq.quality.description"]())
 					}
 				},
 				{
 					"@type": "Question",
-					"name": m["faq.metadata.title"](),
+					"name": String(m["faq.metadata.title"]()),
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": m["faq.metadata.description"]()
+						"text": String(m["faq.metadata.description"]())
 					}
 				},
 				{
 					"@type": "Question",
-					"name": m["faq.batch.title"](),
+					"name": String(m["faq.batch.title"]()),
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": m["faq.batch.description"]()
+						"text": String(m["faq.batch.description"]())
 					}
 				},
 				{
 					"@type": "Question",
-					"name": m["faq.errors.title"](),
+					"name": String(m["faq.errors.title"]()),
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": m["faq.errors.description"]()
+						"text": String(m["faq.errors.description"]())
 					}
 				},
 				{
 					"@type": "Question",
-					"name": m["faq.cache.title"](),
+					"name": String(m["faq.cache.title"]()),
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": m["faq.cache.description"]()
+						"text": String(m["faq.cache.description"]())
 					}
 				}
 			]
-		})}
+		}, null, 0)}
 	</script>
 </svelte:head>
 

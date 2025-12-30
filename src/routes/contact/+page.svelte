@@ -32,11 +32,11 @@
 			"url": "https://convertonline.toolkitlife.com/contact/",
 			"mainEntity": {
 				"@type": "Organization",
-				"name": VERT_NAME,
-				"email": CONTACT_EMAIL,
+				"name": String(VERT_NAME),
+				"email": String(CONTACT_EMAIL),
 				"url": "https://convertonline.toolkitlife.com"
 			}
-		})}
+		}, null, 0)}
 	</script>
 </svelte:head>
 
