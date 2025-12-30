@@ -29,7 +29,7 @@
 			"name": "Terms and Conditions",
 			"description": `Terms and Conditions for ${VERT_NAME} file converter service.`,
 			"url": "https://convertonline.toolkitlife.com/terms/"
-		}, null, 0)}
+		})}
 	</script>
 </svelte:head>
 

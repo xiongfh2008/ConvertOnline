@@ -36,7 +36,7 @@
 				"email": String(CONTACT_EMAIL),
 				"url": "https://convertonline.toolkitlife.com"
 			}
-		}, null, 0)}
+		})}
 	</script>
 </svelte:head>
 

@@ -124,7 +124,7 @@
 					}
 				}
 			]
-		}, null, 0)}
+		})}
 	</script>
 </svelte:head>
 

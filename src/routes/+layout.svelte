@@ -210,7 +210,7 @@
 			"inLanguage": ["en", "zh-Hans", "zh-Hant", "es", "fr", "de", "it", "ja", "ko", "tr", "hr", "el", "id", "pt-BR"],
 			"isAccessibleForFree": true,
 			"usageInfo": "ConvertOnline is a free, open-source file conversion tool. Users can upload files and convert them to various formats. Most conversions happen locally in the browser using WebAssembly. Video conversions may be processed on servers. No registration required. No file size limits for most formats."
-		}, null, 0)}
+		})}
 	</script>
 	<script type="application/ld+json">
 		{JSON.stringify({
@@ -228,7 +228,7 @@
 				"name": "ConvertOnline",
 				"url": "https://convertonline.toolkitlife.com"
 			}
-		}, null, 0)}
+		})}
 	</script>
 	{#if enablePlausible}
 		<script
