@@ -1,6 +1,8 @@
 <script>
 	// VERT Logo
-	let { class: className = "", width = "100%", height = "100%" } = $props();
+	export let className = "";
+	export let width = "100%";
+	export let height = "100%";
 </script>
 
 <svg

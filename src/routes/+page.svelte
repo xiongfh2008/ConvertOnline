@@ -223,15 +223,9 @@
 												]()}
 											>
 												<span>
-													<a
-														href="https://github.com/VERT-sh/VERT/blob/main/docs/VIDEO_CONVERSION.md"
-														target="_blank"
-														rel="noopener noreferrer"
-													>
-														{m[
-															"upload.cards.video_server_processing"
-														]()}
-													</a>
+													{m[
+														"upload.cards.video_server_processing"
+													]()}
 													<span
 														class="text-red-500 -ml-0.5"
 														>*</span
